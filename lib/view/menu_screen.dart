@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:tcc_eng_comp/util/fog_protocol.dart';
+import 'package:tcc_eng_comp/view_model/menu_view_model.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({Key? key}) : super(key: key);
@@ -7,18 +10,17 @@ class MenuPage extends StatefulWidget {
   _MenuPageState createState() => _MenuPageState();
 }
 
-enum FogProtocol { STOMP, MQTT, AMQP }
+var viewModel = Modular.get<MenuViewModel>();
 
 class _MenuPageState extends State<MenuPage> {
-  FogProtocol? _protocol = FogProtocol.STOMP;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black12,
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Text('Menu'),
-      ),
+          backgroundColor: Colors.black,
+          title: Text(viewModel.appBarTitle),
+          automaticallyImplyLeading: false),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -27,109 +29,122 @@ class _MenuPageState extends State<MenuPage> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: TextField(
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Servidor principal',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: viewModel.mainServerLabel,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.yellow),
+                    ),
+                    labelStyle: TextStyle(fontSize: 16, color: Colors.yellow),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.yellow),
-                  ),
-                  labelStyle: TextStyle(fontSize: 16, color: Colors.yellow),
-                ),
-              ),
+                  onChanged: (text) {
+                    viewModel.mainServer = text;
+                  }),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: TextField(
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Servidor de mensagens',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: viewModel.messageBrokerLabel,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.yellow),
+                    ),
+                    labelStyle: TextStyle(fontSize: 16, color: Colors.yellow),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.yellow),
-                  ),
-                  labelStyle: TextStyle(fontSize: 16, color: Colors.yellow),
-                ),
-              ),
+                  onChanged: (text) {
+                    viewModel.messageBroker = text;
+                  }),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: TextField(
-                obscureText: true,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Senha',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white),
+                  obscureText: true,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: viewModel.passwordLabel,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.yellow),
+                    ),
+                    labelStyle: TextStyle(fontSize: 16, color: Colors.yellow),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.yellow),
-                  ),
-                  labelStyle: TextStyle(fontSize: 16, color: Colors.yellow),
-                ),
-              ),
+                  onChanged: (text) {
+                    viewModel.password = text;
+                  }),
             ),
             ListTile(
-              title: const Text('STOMP', style: TextStyle(color: Colors.white),),
+              title: Text(viewModel.radioButtonLabels[0].name,
+                  style: TextStyle(color: Colors.white)),
               leading: Radio<FogProtocol>(
                 fillColor: MaterialStateProperty.all<Color>(Colors.white),
-                value: FogProtocol.STOMP,
-                groupValue: _protocol,
+                value: viewModel.radioButtonLabels[0].value,
+                groupValue: viewModel.protocol,
                 onChanged: (FogProtocol? value) {
                   setState(() {
-                    _protocol = value;
+                    viewModel.radioClick(value);
                   });
                 },
               ),
             ),
             ListTile(
-              title: const Text('MQTT', style: TextStyle(color: Colors.white),),
+              title: Text(viewModel.radioButtonLabels[1].name,
+                  style: TextStyle(color: Colors.white)),
               leading: Radio<FogProtocol>(
                 fillColor: MaterialStateProperty.all<Color>(Colors.white),
-                value: FogProtocol.MQTT,
-                groupValue: _protocol,
+                value: viewModel.radioButtonLabels[1].value,
+                groupValue: viewModel.protocol,
                 onChanged: (FogProtocol? value) {
                   setState(() {
-                    _protocol = value;
+                    viewModel.radioClick(value);
                   });
                 },
               ),
             ),
             ListTile(
-              title: const Text('AMQP', style: TextStyle(color: Colors.white),),
+              title: Text(viewModel.radioButtonLabels[2].name,
+                  style: TextStyle(color: Colors.white)),
               leading: Radio<FogProtocol>(
                 fillColor: MaterialStateProperty.all<Color>(Colors.white),
-                value: FogProtocol.AMQP,
-                groupValue: _protocol,
+                value: viewModel.radioButtonLabels[2].value,
+                groupValue: viewModel.protocol,
                 onChanged: (FogProtocol? value) {
                   setState(() {
-                    _protocol = value;
+                    viewModel.radioClick(value);
                   });
                 },
               ),
             ),
-            Expanded(child: SizedBox(height: 1,)),
+            Expanded(
+                child: SizedBox(
+              height: 1,
+            )),
             Padding(
               padding: EdgeInsets.all(16),
               child: ElevatedButton(
-                  onPressed: (){
-                    Navigator.of(context).pushNamed('/test',);
-                  },
-                  child: Text(
-                    'EXECUTAR TESTE',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  )
+                child: Text(
+                  viewModel.testButton,
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                onPressed: () {
+                  viewModel.buttonClick();
+                  Navigator.of(context).pushNamed(viewModel.testButtonRoute);
+                }
               ),
             )
           ],

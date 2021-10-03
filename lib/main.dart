@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:tcc_eng_comp/route.dart';
 
+import 'app_module.dart';
+
 void main() {
-  runApp(TccEngComp());
+  runApp(ModularApp(module: AppModule(), child: TccEngComp()));
 }
 
 class TccEngComp extends StatelessWidget {
