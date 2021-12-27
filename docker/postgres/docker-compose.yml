@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  tccprojectpostgres:
+    image: postgres
+    container_name: tccprojectpostgres
+    environment:
+      POSTGRES_USERNAME: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - '5432:5432'
+    volumes: 
+      - /dados/PostgreSQL:/var/lib/postgresql/data
+    networks:
+      - postgres-compose-network
+
+
+  tccprojectpgadmin:
+    image: dpage/pgadmin4
+    container_name: tccprojectpgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "postgres@email.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "16543:80"
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json # preconfigured servers/connections
+    depends_on:
+      - tccprojectpostgres
+    networks:
+      - postgres-compose-network
+
+networks: 
+  postgres-compose-network:
+    driver: bridge

@@ -1,0 +1,194 @@
+{
+    "users": [
+        {
+            "name": "Luis",
+            "password":  "luis",
+            "tags": "administrator"
+        },
+        {
+            "name": "Jose",
+            "password":  "jose",
+            "tags": "administrator"
+        },
+        {
+            "name": "mqttUser",
+            "password":  "mqttUser",
+            "tags": "administrator"
+        }
+    ],
+    "vhost": [
+        {
+            "name": "/"
+        }
+    ],
+    "permissions": [
+        {
+            "user": "Luis",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "Jose",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "mqttUser",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ],
+    "parameters": [],
+    "policies": [],
+    "exchanges": [
+        {
+            "name": "project.AMQPExchange",
+            "vhost": "/",
+            "type": "topic",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        },
+        {
+            "name": "project.MQTTExchange",
+            "vhost": "/",
+            "type": "topic",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        },
+        {
+            "name": "project.STOMPExchange",
+            "vhost": "/",
+            "type": "topic",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        },
+        {
+            "name":"project.rejectExchange",
+            "vhost":"/",
+            "type":"topic",
+            "durable":true,
+            "auto_delete":false,
+            "internal":false,
+            "arguments":{}
+        }
+    ],
+    "queues": [
+        {
+            "name": "AMQP.Tx",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "AMQP.Rx",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments":{
+                "x-dead-letter-exchange":"project.rejectExchange",
+                "x-message-ttl":10000,
+                "x-queue-type":"classic"
+            }
+        },
+        {
+            "name": "MQTT.Rx",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments":{
+                "x-dead-letter-exchange":"project.MQTTExchange",
+                "x-dead-letter-routing-key":"MQTT.TxKey",
+                "x-message-ttl":10000,
+                "x-queue-type":"classic"
+            }
+        },
+        {
+            "name": "MQTT.Tx",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "STOMP.Tx",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {}
+        },
+        {
+            "name": "STOMP.Rx",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments":{
+                "x-dead-letter-exchange":"project.rejectExchange",
+                "x-message-ttl":500,
+                "x-queue-type":"classic"
+            }
+        }
+    ],
+    "bindings": [
+        {
+            "source": "project.AMQPExchange",
+            "vhost": "/",
+            "destination": "AMQP.Rx",
+            "destination_type": "queue",
+            "routing_key": "AMQP.#",
+            "arguments": {}
+        },
+        {
+            "source": "project.MQTTExchange",
+            "vhost": "/",
+            "destination": "MQTT.Rx",
+            "destination_type": "queue",
+            "routing_key": "MQTT.RxKey",
+            "arguments": {}
+        },
+        {
+            "source": "project.STOMPExchange",
+            "vhost": "/",
+            "destination": "STOMP.Rx",
+            "destination_type": "queue",
+            "routing_key": "STOMP.RxKey",
+            "arguments": {}
+        },
+        {
+            "source": "project.rejectExchange",
+            "vhost": "/",
+            "destination": "AMQP.Tx",
+            "destination_type": "queue",
+            "routing_key": "AMQP.#",
+            "arguments": {}
+        },
+        {
+            "source": "project.MQTTExchange",
+            "vhost": "/",
+            "destination": "MQTT.Tx",
+            "destination_type": "queue",
+            "routing_key": "MQTT.TxKey",
+            "arguments": {}
+        },
+        {
+            "source": "project.rejectExchange",
+            "vhost": "/",
+            "destination": "STOMP.Tx",
+            "destination_type": "queue",
+            "routing_key": "STOMP.#",
+            "arguments": {}
+        }
+    ]
+}

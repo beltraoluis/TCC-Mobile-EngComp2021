@@ -1,0 +1,14 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "Tcc_postgres_db",
+            "Group": "TccServer",
+            "Port": 5432,
+            "Username": "postgres",
+            "Host": "host.docker.internal",
+            "PassFile": "/pgpass",
+            "SSLMode": "prefer",
+            "MaintenanceDB": "postgres"
+        }
+    }
+}
