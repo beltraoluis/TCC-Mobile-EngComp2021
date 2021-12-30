@@ -206,7 +206,7 @@ O cronograma simplificado, exibido na seção 4.3.1, aborda os meses em que ser�
 | 10    | Bateria de testes                                                   |             |  02/01/22	|  31/03/21	| 164h
 | 11    | Análise dos resultados                                              |             |  01/02/22	|  30/04/22	| 122h
 | 12    | Escrita e ajustes finais da monografia                              |  monografia	|  15/06/21	|  30/04/22	|  40h
-|       |                                                                     |         	|  30/04/22	| total:    | 966h
+|       |                                                                     |         	|        	| total:    | 966h
 
 #### 4.3.3 Custos
 
