@@ -29,5 +29,25 @@ Os objetivos específicos desse trabalho são:
 
 ![Diagrama de blocos](./latex/dados/figuras/diagrama_de_blocos-v1.png)
 
+O diagrama das relações entre tecnologias é mostrado na Figura 1. O dispositivo móvel é o ponto central desta aplicação, não só porque ele faz parte da comunicação que será analisa-da, mas também porque a coordena. Esta comunicação ocorre entre o dispositivo móvel e um servidor de mensagens (broker), sendo que este faz parte da camada de névoa. Essa comuni-cação é representada pela seta de numeração 8.
 
+O RabbitMQ (RabbitMQ) foi escolhido pois, além dos integrantes já terem conhecimen-to sobre seu uso e tê-lo usado em trabalhos anteriores, esse broker tem suporte para todos os protocolos que serão analisados neste trabalho, o que ajuda a evitar divergências nos dados causadas pelo uso de diferentes brokers.
+O Docker foi escolhido como servidor central por ser uma ferramenta muito flexível de modo que pode ser construída uma imagem para cada microsserviço e a partir dela levantar um serviço em segundos, sendo assim um sistema que gerencia a execução dos microsserviços. 
 
+O Azure por sua vez é um serviço de nuvem amplamente conhecido e oferece o gerenci-amento de servidores como um serviço o que traz uma grande praticidade para o gerenciamen-to do projeto. Além disso, o Azure oferece um período de testes de um ano gratuito para o desenvolvimento de projetos como uma forma de aprender a usar a plataforma e ambos os autores têm direito a esse benefício.
+
+Os dados de comunicação ficarão temporariamente armazenados na memória interna do dispositivo móvel, em um arquivo do formato CSV. Periodicamente, estes dados armazenados serão enviados para um banco de dados externo que será executado como um microsserviço Docker no servidor de computação em nuvem Azure. As conexões identificadas pelos núme-ros 6 e 4 representam a transmissão referida, onde os dados do arquivo CSV são transmitidos para o “Servidor Principal” e, posteriormente, são salvos em um Banco de dados. 
+
+O banco de dados que será utilizado no projeto será o PostgreSQL, que é um banco de dados relacional robusto e que foi escolhido por uma questão de familiaridade dos autores, que já empregaram esse banco de dados em projetos anteriores.
+
+Como forma de redundância, caso a conexão do dispositivo móvel com os microsservi-ços seja perdida, uma instância local pode ser criada e configurada no aplicativo para permitir que os testes continuem. Neste caso, as conexões representadas pelos números 7, 5 e 3 substi-tuem as conexões 8, 6 e 4, respectivamente.
+
+Como forma de redundância, um segundo arquivo de backup CSV, gerado a partir do banco de dados, periodicamente será armazenado em outro servidor na nuvem. Esta conexão é representada pelo número 9. Em caso de queda de conexão com a instância principal do servi-dor, tratada anteriormente, a conexão 9 será substituída pela conexão de número 1.
+
+Os dados salvos no banco de dados e nos dois arquivos CSV serão sincronizados pela ferramenta DBeaver, que permite conectar, gerenciar e migrar dados entre diversos bancos de dados e meios de armazenamento de informação como CSV. As conexões do DBeaver são apresentadas na Figura 1 pelos números 11, 9 e 2.
+
+O Flutter é um novo framework da Google que permite desenvolver a interface gráfica e a lógica de negócio que podem ser usadas para criar aplicações para Android e iOS com um único código base, de modo que os códigos nativos são autogerados.
+
+Para a realização dos testes relativos à memória, processamento e energia as plataformas Android e iOS possuem ferramentas que permitem analisar essas características durante a exe-cução da aplicação.
+
+## MOTIVAÇÃO E RESULTADOS ESPERADOS
