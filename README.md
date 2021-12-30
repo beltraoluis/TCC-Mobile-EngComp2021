@@ -1,11 +1,11 @@
 # Análise do desempenho de protocolos para Computação em névoa
 
-Equipe: 
-1834134 José Vitor Moreno josemoreno@alunos.utfpr.edu.br (41) 3672-4602
+### Equipe: 
+1834134 José Vitor Moreno josemoreno@alunos.utfpr.edu.br (41) 3672-4602 \
 906867 Luís Henrique Beltrão Santana luis.2012@alunos.utfpr.edu.br (41) 99690-4570
 
-Professores Orientadores:
-Profª. Drª. Ana Cristina B. Kochem Vendramin
+### Professores Orientadores:
+Profª. Drª. Ana Cristina B. Kochem Vendramin \
 Prof. Dr. Daniel Fernando Pigatto
 
 ## Resumo
@@ -27,7 +27,7 @@ Os objetivos específicos desse trabalho são:
 * Estudar os protocolos de comunicação STOMP, MQTT e AMQP;
 * Analisar o desempenho dos protocolos STOMP, MQTT e AMPQ em relação às métricas: queda de conexão, consumo de memória, processamento e energia;
 
-
+![Diagrama de blocos](./latex/dados/figuras/diagrama_de_blocos-v1.png)
 
 
 
