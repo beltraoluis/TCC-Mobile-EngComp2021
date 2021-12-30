@@ -173,29 +173,29 @@ O cronograma simplificado, exibido na seção 4.3.1, aborda os meses em que ser�
 
 
 
-| Etapa | Ação                                                                |  Entregável |  Início   | Fim       |  Tempo | estado
-| ----- | ------------------------------------------------------------------- |  ---------- |  -------- | --------- |  ----- | ------
-| 1	    | Pesquisa                                                            |             |  15/06/21 |  19/06/21 |  10h   | feito
-| 1	    | Resumo                                                              |   Resumo    |  21/06/21 |  26/06/21 |  12h   | feito
-| 1	    | Cronograma                                                          |             |  28/06/21 |  09/07/21 |  24h   | feito
-| 1     | Análise de riscos                                                   |             |  14/07/21 |  17/07/21 |   8h   | feito
-| 1     | Metodologia                                                         |             |  19/07/21 |  24/07/21 |  12h   | feito
-| 2	    | Análise de requisitos		                                          |             |  15/06/21 |  03/07/21 |  40h   | feito
-| 2	    | Diagramas UML e design de telas                                     |             |  05/07/21 |  31/08/21 | 100h   | feito
-| 3     | Configuração do Projeto e implementação da arquitetura base.        |             |  01/09/21 |  04/09/21 |   8h   | feito
-| 3     | Implementação da tela de teste dos protocolos e da regra de negócio |             |  06/09/21 |  11/09/21 |  10h   | feito
-| 3     | Implementação da tela de configuração de teste e da regra de negócio|             |  13/09/21 |  18/09/21 |  12h   | feito
-| 3     | Implementação da tela de envio de resultados e da regra de negócio  |             |  20/09/21 |  25/09/21 |  12h   | feito
-| 4     | Estudo sobre Docker                                                 |         	|  01/09/21 |  11/09/21 |  18h   | feito
-| 4     | Configuração do RabbitMQ		                                      |             |  13/09/21 |  18/09/21 |  12h   | feito
-| 4     | Configuração do PostgreSQL		                                  |             |  20/09/21	|  25/09/21	|  12h   | em andamento
-| 5     | Integração da biblioteca do Stomp		                              |             |  27/09/21	|  02/10/21	|  12h   | em andamento
-| 5     | Conexão com o servidor de mensagens	                              |             |  04/10/21	|  09/10/21	|  12h   |
-| 5     | Reconexão                                                           |             |  11/10/21	|  23/10/21	|  20h   |
-| 6	    | Integração da biblioteca do MQTT		                              |             |  25/10/21	|  30/10/21	|  12h   | em andamento
-| 6	    | Conexão com o servidor de mensagens		                          |             |  01/11/21	|  06/11/21	|  10h   |
-| 6	    | Reconexão                                                           |             |  08/11/21	|  20/11/21 |  22h   |
-| 7	    | Integração da biblioteca do AMQP	                                  |             |  22/11/21	|  04/12/21	|  24h   | em andamento
-| 7	    | Conexão com o servidor de mensagens                                 |             |  06/12/21	|  18/12/21	|  24h   |
+| Etapa | Ação                                                                |  Entregável |  Início   | Fim       |  Tempo 
+| ----- | ------------------------------------------------------------------- |  ---------- |  -------- | --------- |  ----- 
+| 1	    | Pesquisa                                                            |             |  15/06/21 |  19/06/21 |  10h   
+| 1	    | Resumo                                                              |   Resumo    |  21/06/21 |  26/06/21 |  12h   
+| 1	    | Cronograma                                                          |             |  28/06/21 |  09/07/21 |  24h   
+| 1     | Análise de riscos                                                   |             |  14/07/21 |  17/07/21 |   8h   
+| 1     | Metodologia                                                         |             |  19/07/21 |  24/07/21 |  12h   
+| 2	    | Análise de requisitos		                                          |             |  15/06/21 |  03/07/21 |  40h   
+| 2	    | Diagramas UML e design de telas                                     |             |  05/07/21 |  31/08/21 | 100h   
+| 3     | Configuração do Projeto e implementação da arquitetura base.        |             |  01/09/21 |  04/09/21 |   8h   
+| 3     | Implementação da tela de teste dos protocolos e da regra de negócio |             |  06/09/21 |  11/09/21 |  10h   
+| 3     | Implementação da tela de configuração de teste e da regra de negócio|             |  13/09/21 |  18/09/21 |  12h   
+| 3     | Implementação da tela de envio de resultados e da regra de negócio  |             |  20/09/21 |  25/09/21 |  12h   
+| 4     | Estudo sobre Docker                                                 |         	|  01/09/21 |  11/09/21 |  18h   
+| 4     | Configuração do RabbitMQ		                                      |             |  13/09/21 |  18/09/21 |  12h   
+| 4     | Configuração do PostgreSQL		                                  |             |  20/09/21	|  25/09/21	|  12h   
+| 5     | Integração da biblioteca do Stomp		                              |             |  27/09/21	|  02/10/21	|  12h   
+| 5     | Conexão com o servidor de mensagens	                              |             |  04/10/21	|  09/10/21	|  12h   
+| 5     | Reconexão                                                           |             |  11/10/21	|  23/10/21	|  20h   
+| 6	    | Integração da biblioteca do MQTT		                              |             |  25/10/21	|  30/10/21	|  12h   
+| 6	    | Conexão com o servidor de mensagens		                          |             |  01/11/21	|  06/11/21	|  10h   
+| 6	    | Reconexão                                                           |             |  08/11/21	|  20/11/21 |  22h   
+| 7	    | Integração da biblioteca do AMQP	                                  |             |  22/11/21	|  04/12/21	|  24h   
+| 7	    | Conexão com o servidor de mensagens                                 |             |  06/12/21	|  18/12/21	|  24h   
 
 
