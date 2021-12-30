@@ -95,68 +95,69 @@ No período de “Pesquisas iniciais”, apresentado no cronograma, a escrita da
 ### Análise de Riscos
 
 Os principais riscos para o projeto estão descritos abaixo:
-*Risco 1*
-*Importância:* Alta.
-*Descrição:* Morte de um dos alunos.
-*Efeito no Projeto:* Atraso considerável no desenvolvimento.
-*Probabilidade:* Baixa.
-*Impacto:* Alto.
-*Ação: Eliminar:* Ignorar o iOS e focar no Android
 
-*Risco 2*
-*Importância:* Alta.
-*Descrição:* Um dos membros da equipe ficar doente.
-*Efeito no Projeto:* Atraso no desenvolvimento.
-*Probabilidade:* Baixa.
-*Impacto:* Médio.
-*Ação: Eliminar:* Ignorar o iOS e focar no Android.
+**Risco 1** \
+**Importância:** Alta. \
+**Descrição:** Morte de um dos alunos. \
+**Efeito no Projeto:** Atraso considerável no desenvolvimento. \
+**Probabilidade:** Baixa. \
+**Impacto:** Alto. \
+**Ação: Eliminar:** Ignorar o iOS e focar no Android
 
-*Risco 3*
-*Importância:* Alta.
-*Descrição:* Falha da integração da biblioteca AMQP com o Sistema Operacional.
-*Efeito no Projeto:* O protocolo não será analisado.
-*Probabilidade:* Baixa.
-*Impacto:* Médio.
-*Ação: Eliminar:* Foco na análise dos outros protocolos.
+**Risco 2** \
+**Importância:** Alta. \
+**Descrição:** Um dos membros da equipe ficar doente. \
+**Efeito no Projeto:** Atraso no desenvolvimento. \
+**Probabilidade:** Baixa. \
+**Impacto:** Médio. \
+**Ação: Eliminar:** Ignorar o iOS e focar no Android.
 
-*Risco 4*
-*Importância:* Média.
-*Descrição:* Curva de aprendizado das tecnologias envolvidas no projeto.
-*Efeito no Projeto:* Atraso no desenvolvimento.
-*Probabilidade:* Média.
-*Impacto:* Médio.
-*Ação: Mitigar:* Empregar técnicas desenvolvimento ágil e definição clara de cronograma
+**Risco 3** \
+**Importância:** Alta. \
+**Descrição:** Falha da integração da biblioteca AMQP com o Sistema Operacional. \
+**Efeito no Projeto:** O protocolo não será analisado. \
+**Probabilidade:** Baixa. \
+**Impacto:** Médio. \
+**Ação: Eliminar:** Foco na análise dos outros protocolos.
 
-*Risco 5*
-*Importância:* Média.
-*Descrição:* A biblioteca de AMQP não ser compatível com os ciclos de vida do Sistema.
-*Efeito no Projeto:* Atraso no desenvolvimento.
-*Probabilidade:* Média.
-*Impacto:* Baixo.
-*Ação: Mitigar:* Desenvolver tratamentos para os ciclos de vida com programação reativa
+**Risco 4** \
+**Importância:** Média. \
+**Descrição:** Curva de aprendizado das tecnologias envolvidas no projeto. \
+**Efeito no Projeto:** Atraso no desenvolvimento. \
+**Probabilidade:** Média. \
+**Impacto:** Médio. \
+**Ação: Mitigar:** Empregar técnicas desenvolvimento ágil e definição clara de cronograma \
 
-*Risco 6*
-*Importância:* Média.
-*Descrição:* Mudança de regras de privacidade devido ao lançamento da API 31 do Android e do iOS 15
-*Efeito no Projeto:* Atraso no desenvolvimento.
-*Probabilidade:* Média.
-*Impacto:* Baixo.
-*Ação: Mitigar:* Adequar a implementação às novas regras de privacidade
+**Risco 5** \
+**Importância:** Média. \
+**Descrição:** A biblioteca de AMQP não ser compatível com os ciclos de vida do Sistema. \
+**Efeito no Projeto:** Atraso no desenvolvimento. \
+**Probabilidade:** Média. \
+**Impacto:** Baixo. \
+**Ação: Mitigar:** Desenvolver tratamentos para os ciclos de vida com programação reativa
 
-*Risco 7*
-*Importância:* Baixa.
-*Descrição:* Queda de internet por mais de um dia.
-*Efeito no Projeto:* Atraso do cronograma.
-*Probabilidade:* Alta.
-*Impacto:* Baixo.
-*Ação: Mitigar:* usar uma instancia local dos servidores.
+**Risco 6** \
+**Importância:** Média. \
+**Descrição:** Mudança de regras de privacidade devido ao lançamento da API 31 do Android e do iOS 15 \
+**Efeito no Projeto:** Atraso no desenvolvimento. \
+**Probabilidade:** Média. \
+**Impacto:** Baixo. \
+**Ação: Mitigar:** Adequar a implementação às novas regras de privacidade
 
-Risco 8*
-*Importância:* Baixa.
-*Descrição:* Anomalias de rede durante os testes dos protocolos 
-*Efeito no Projeto:* Atraso do cronograma.
-*Probabilidade:* Média.
-*Impacto:* Baixo.
-*Ação: Mitigar:* Fazer diversas baterias de testes para reduzir o problema.
+**Risco 7** \
+**Importância:** Baixa. \
+**Descrição:** Queda de internet por mais de um dia. \
+**Efeito no Projeto:** Atraso do cronograma. \
+**Probabilidade:** Alta. \
+**Impacto:** Baixo. \
+**Ação: Mitigar:** usar uma instancia local dos servidores.
+
+**Risco 8** \
+**Importância:** Baixa. \
+**Descrição:** Anomalias de rede durante os testes dos protocolos \
+**Efeito no Projeto:** Atraso do cronograma. \
+**Probabilidade:** Média. \
+**Impacto:** Baixo. \
+**Ação: Mitigar:** Fazer diversas baterias de testes para reduzir o problema.
 
 
