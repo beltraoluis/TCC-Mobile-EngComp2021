@@ -196,6 +196,17 @@ O cronograma simplificado, exibido na seção 4.3.1, aborda os meses em que ser�
 | 6	    | Conexão com o servidor de mensagens		                          |             |  01/11/21	|  06/11/21	|  10h   
 | 6	    | Reconexão                                                           |             |  08/11/21	|  20/11/21 |  22h   
 | 7	    | Integração da biblioteca do AMQP	                                  |             |  22/11/21	|  04/12/21	|  24h   
-| 7	    | Conexão com o servidor de mensagens                                 |             |  06/12/21	|  18/12/21	|  24h   
+| 7	    | Conexão com o servidor de mensagens                                 |             |  06/12/21	|  18/12/21	|  24h 
+| 7	    | Reconexão                                                           |             |  20/12/21	|  22/01/22	|  46h
+| 8	    | Implementação do servidor                                           |             |  27/09/21	|  02/10/21	|  12h
+| 8	    | Estudo da tecnologia Flutter                                        |             |  04/10/21	|  23/10/21	|  32h
+| 8	    | Implementação do Business Model                                     |             |  25/10/21	|  20/11/21	|  44h
+| 9	    | Estudo da tecnologia LiveData	                                      |             |  22/11/21	|  04/12/21	|  24h
+| 9	    | Integração das telas com a regra de negócio                         |     APK	    |  06/12/21	|  30/12/21	|  40h
+| 10    | Bateria de testes                                                   |             |  02/01/22	|  31/03/21	| 164h
+| 11    | Análise dos resultados                                              |             |  01/02/22	|  30/04/22	| 122h
+| 12    | Escrita e ajustes finais da monografia                              |  monografia	|  15/06/21	|  30/04/22	|  40h
+|       |                                                                     |         	|  30/04/22	| total:    | 966h
+
 
 
