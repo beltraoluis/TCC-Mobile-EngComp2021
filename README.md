@@ -208,5 +208,41 @@ O cronograma simplificado, exibido na seção 4.3.1, aborda os meses em que ser�
 | 12    | Escrita e ajustes finais da monografia                              |  monografia	|  15/06/21	|  30/04/22	|  40h
 |       |                                                                     |         	|  30/04/22	| total:    | 966h
 
+#### 4.3.3 Custos
 
+O projeto se baseia em protocolos de código aberto. Desta forma, não há consideráveis custos na realização do trabalho.
 
+## DOCUMENTAÇÃO
+
+### 5.1 Estrutura do Sumário
+
+## Referências
+1.	ROSS, A. B. Uso da computação em névoa para coleta e análise de dados em cidades inteligentes. Trabalho de Conclusão de Curso (Graduação) – Universidade Tecnológica Federal do Paraná - UTFPR, 2019. Disponível em: <https://pessoal.dainf.ct.utfpr.edu.br/criskochem/TCC_Ross.pdf>. Acesso em: 28 de jul. 2021.
+
+2.	ROSS, A. B.; PIGATTO, D. F.; VENDRAMIN, A. C. B. K. Uso da Computação em Névoa para Coleta e Análise de Dados em Cidades Inteligentes. In: 4th Conference on Information Systems in Latin America (ISLA 2020), 2020. 4th Conference on Infor-mation Systems in Latin America (ISLA 2020), 2020. v. 1. p. 1-9.
+
+3.	CARVALHO, Fernando. Avaliação estocástica de consumo de energia no projeto de sistemas embarcados. Dissertação (Mestrado) – Universidade Federal de Pernambuco - UFPE, 2004.
+
+4.	COUTINHO, Gustavo. A era dos smartphones um estudo exploratório sobre o uso dos smartphones no Brasil. Trabalho de Conclusão de Curso (Graduação) – Universidade de Brasilía - UnB, 2014.
+
+5.	LAZURIAGA, Jorge E; et al. A comparative evaluation of AMQP and MQTT proto-cols over unstable and mobile networks, 2015. 
+
+6.	OASIS – MQTT Version 5.0, 2019. Disponível em: <https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html>. Acesso em: 09 de jul. 2021.
+
+7.	OASIS – OASIS Advanced Message Queuing Protocol (AMQP) TC. Disponível em: <https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=amqp>. Acesso em: 09 de jul. 2021.
+
+8.	OASIS -OASIS Advanced Message Queuing Protocol (AMQP) Version 1.0, 2012. Disponível em: <http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-types-v1.0-os.html>. Acesso em 28 de jul. 2021
+
+9.	STOMP. STOMP Protocol Specification, Version 1.2, 2012. The Simple Text Oriented Messaging Protocol. Disponível em: <https://stomp.github.io//stomp-specification-1.2.html>. Acesso em: 09 de jul. 2021.
+
+10.	GOOGLE DEVELOPERS. Documentação para desenvolvedores de Apps. Disponível em: <https://developer.android.com/docs?hl=pt-br>. Acesso em: 09 de jul. 2021.
+
+11.	DBEAVER – About Dbeaver, 2021. Disponível em: <https://github.com/dbeaver/dbeaver/wiki>. Acesso em: 09 de jul. 2021.
+
+12.	RABBITMQ – Documentation: Table of Contents. Disponível em: <https://www.rabbitmq.com/documentation.html>. Acesso em: 09 de jul. 2021.
+
+13.	POSTGRESQL – PostgreSQL 13.3 Documentation. Disponível em: <https://www.postgresql.org/docs/13/index.html>.. Acesso em: 09 de jul. 2021.
+
+14.	COUTINHO, Antônio Augusto T R; CARNEIRO, Elisângela Oliveira; GREVE, Fabíola Gonçalves Pereira. Computação em Névoa: Conceitos, Aplicações e Desafios. In: XXXIV Simpósio Brasileiro de Redes de Computadores e Siste-mas Distribuídos (SBRC 2016), 2016. cap. 6. p. 266-315.
+
+15.	AZEVEDO, Marcelo Teixeira de. Transformação digital na indústria: indústria 4.0 e a rede de água inteligente no Brasil. Tese (Doutorado) – Universidade de São Paulo - USP, 2017.
