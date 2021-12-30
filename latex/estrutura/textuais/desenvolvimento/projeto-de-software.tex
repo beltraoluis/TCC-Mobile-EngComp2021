@@ -1,0 +1,127 @@
+% METODOLOGIA------------------------------------------------------------------
+
+\chapter{PROJETO DE SOFTWARE}
+
+\section{\textbf{Requisitos Funcionais e Não Funcionais}}
+
+\begin{table}[htp]
+\renewcommand{\arraystretch}{1.3}
+\caption{Requisitos Funcionais do dispositivo móvel}
+\label{descriçãoSA}
+\centering
+\begin{tabular}{|p{1.5cm}|p{11cm}|}
+\hline
+\textbf{Código}  & \textbf{Descrição dos requisitos}\\\hline
+RF01 & O programa deve ter um uma tela inicial; \\\hline
+RF01.1 & A tela inicial deve ter botões que permitam iniciar a execução de recursos do programa; \\\hline
+RF02 & O programa deve permitir que o dispositivo móvel estabeleça comunicação com um servidor de mensagens; \\\hline
+RF02.1 & O programa deve ser capaz de enviar mensagens para o servidor de mensagens; \\\hline
+RF02.2 & O programa deve ser capaz de receber mensagens do servidor de mensagens; \\\hline
+RF03 & O programa deve ser capaz de armazenar informações sobre a transmissão de mensagens internamente;\\\hline
+RF03.1 & O programa deve ser capaz guardas essas informações em um arquivo CSV;\\\hline
+RF03.2 & O programa deve ser capaz de extrair informações salvas neste arquivo;\\\hline
+RF04 & O programa deve ser capaz de estabelecer comunicação com um servidor principal (\textit{Backend});\\\hline 
+RF04.1 & O programa deve ser capaz de enviar quais ações devem ser executadas pelo servidor principal;\\\hline 
+RF04.2 & O programa deve ser capaz de enviar os dados armazenados no arquivo CSV, salvo internamente, para o servidor principal;\\\hline 
+RF04.3 & O envio de dados armazenados internamente para o servidor principal deve ser feito periodicamente;\\\hline 
+RF05 & O programa deve ser capaz de criar instâncias locais do servidor de mensagens e do servidor principal; \\\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htp]
+\renewcommand{\arraystretch}{1.3}
+\caption{Requisitos do projeto}
+\label{descriçãoSA}
+\centering
+\begin{tabular}{|p{1.5cm}|p{11cm}|}
+\hline
+\multicolumn{2}{|c|}{Requisitos do servidor de mensagens} \\
+\hline
+\textbf{Código}  & \textbf{Descrição dos requisitos}\\\hline
+RF06 & O servidor deve possuir uma conexão bidirecional com o dispositivo móvel; \\\hline
+RF06.1 & O servidor deverá ser capaz de receber mensagens do dispositivo móvel; \\\hline
+RF06.2 & O servidor deverá ser capaz de enviar mensagens para o dispositivo móvel; \\\hline
+RF07 & O servidor de mensagens deve ser capaz de armazenar as mensagens em filas, uma para as mensagens recebidas e outra para as mensagens que serão consumidas pelo dispositivo móvel;  \\\hline
+RF08 & O servidor deve ser capaz de registrar nas mensagens, que serão consumidas pelo dispositivo móvel, os dados necessários para análise posterior;\\\hline 
+\end{tabular}
+\end{table}
+
+\begin{table}[htp]
+\renewcommand{\arraystretch}{1.3}
+\caption{Requisitos Funcionais do Servidor Principal}
+\label{descriçãoSA}
+\centering
+\begin{tabular}{|p{1.5cm}|p{11cm}|}
+\hline
+\textbf{Código}  & \textbf{Descrição dos requisitos}\\\hline
+RF09 & O  servidor principal deve ser capaz de estabelecer uma comunicação com o dispositivo móvel; \\\hline
+RF09.1 & O servidor deverá ser capaz de receber comandos do dispositivo móvel; \\\hline
+RF09.2 & O servidor deverá ser capaz de receber dados do dispositivo móvel; \\\hline
+RF10 & O servidor principal deve ser capaz de estabelecer comunicação com um Banco de dados PostgreSQL;  \\\hline
+RF10.1 & O servidor deve ser capaz de enviar comandos para o banco de dados; \\\hline
+RF10.1.1 & O servidor deverá ser capaz de enviar todos os comandos suportados pelo SQL, bancos de dados relacionais;  \\\hline
+RF10.2 & O servidor deverá ser capaz de receber informações desse banco de dados.
+\end{tabular}
+\end{table}
+
+\begin{table}[htp]
+\renewcommand{\arraystretch}{1.3}
+\caption{Requisitos Funcionais do banco de dados}
+\label{descriçãoSA}
+\centering
+\begin{tabular}{|p{1.5cm}|p{11cm}|}
+\hline
+\textbf{Código}  & \textbf{Descrição dos requisitos}\\\hline
+RF11 & O Banco de dados deve ser capaz de atender requisições enviadas pelo servidor principal; \\\hline
+RF11.1 & O banco de dados deverá ser capaz de receber comandos do servidor principal; \\\hline
+RF11.2 & O banco de dados deverá ser capaz de receber dados do servidor principal; \\\hline
+RF12 & O Banco de dados deve ser capaz de formar estruturas com informações no formato SQL;  \\\hline
+RF13 & O banco de dados deve ser capaz de gerenciar as tabelas criadas;\\\hline
+RF13.1 & O banco de dados deverá ser criar tabelas novas;  \\\hline
+RF13.2 & O banco de dados deverá ser editar tabelas já existentes;  \\\hline
+RF13.3 & O banco de dados deverá ser deletar tabelas já existentes;  \\\hline
+\end{tabular}
+\end{table}
+
+\section{\textbf{Diagramas}}
+
+\section{\textbf{Tecnologias}}
+
+\subsection{\textbf{Docker}}
+
+Docker é uma plataforma aberta que tem como objetivo auxiliar desenvolvedores na produção, distribuição e a execução das aplicações criadas por eles, já que ele permite ao usuário criar imagens execuáveis. O uso dele pode reduzir o atraso entre a escrita de um código de um programa e sua execução.
+
+Ao usar o Docker, o desenvolvedor cria um ambiente chamado de contêiner, forma como é referido na documentação do Docker (ref), que é usado pelo usuário para empacotar sua aplicação para sua distribuição futura, sendo que contêineres contém todos os recursos necessários para que a aplicação seja executada corretamente em diferentes tipos de ambientes, sem dependências externas, de tal forma que não seja necessário se basear nos recursos presentes no host onde será executado. Além disso, os contêineres são leves e seu uso ajuda a isolar as aplicações, o que pode ser interessante em determinados cenários.
+
+Para criar um contêiner, é necessário que seja criado uma Imagem, que é um arquivo que pode apenas ser lido e contém as instruções necessárias para a criação de um Contêiner Docker. Para criar um Imagem, é necessário criar um \textit{Dockerfile} que contém uma lista de instruções definidas pelo usuário, sendo que cada instrução isola as suas respectivas ações e resultados em uma camada. Uso destas camadas implicam que, quando o \textit{Dockerfile} for alterado, apenas as camadas que foram modificadas são reconstruídas.
+
+O contêiner, por sua vez, é uma instância executável da imagem. Ele pode ser configurado por meio da imagem que será usada para sua criação, bem como com opções de configuração utilizadas no momento de sua criação. Os contêiners podem ser criados, inicializados, movidos ou apagados por meio do API Docker.
+
+\subsubsection{\textbf{O uso do Kubernetes com Docker}}
+
+Existem ferramentas para auxiliar usuários no uso de contêineres, que ajudam na organização, manutenção e gerenciamento deles. Este é o caso do Kubernetes, que é usado neste projeto como ferramenta de gerenciamento dos contêineres criados com o Docker.
+
+Kubernetes (Ref) é uma ferramenta, código aberto, que administra o funcionamento de contêineres e que permite ao usuário automatizar a implementação, o dimensionamento e o gerenciamento deles. Inicialmente foi criado como uma ferramenta auxiliar do Docker, mas atualmente o Kubernetes tem suporte para outros tipos de plataformas.
+
+Ao usar Kubernetes, um \textit{cluster} Kubernetes é criado, que é composto por um conjunto de servidores de processamento, onde uma parte deles é usada para o controle da aplicação, compondo o chamado (\textit{Control Plane}) e a outra é usada para processamento das aplicações empacotadas em contêineres, sendo chamados de \textit{worker nodes}. 
+
+Portanto, é possível coordenar o funcionamento de contêineres nos \textit{worker nodes} com apenas um computador pertencente ao \textit{Control Plane}. Sendo assim, o usuário pode decidir qual servidor executará qual(ais) contêiner(es), em quais momentos, além de permitir o intercambio entre os \textit{worker nodes} de maneira mais rápida e fácil.
+
+\subsection{\textbf{RabbitMQ}}
+
+\subsection{\textbf{Flutter}}
+
+\subsection{\textbf{DBeaver}}
+
+\section{\textbf{Considerações}}
+
+\label{chap:metodologia}
+
+\lipsum[2-5] %trocar pelo texto correspondente
+
+
+
+
+
+
+

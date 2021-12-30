@@ -1,0 +1,97 @@
+
+\chapter{EXEMPLOS}
+\label{chap:exemplos}
+
+Alguns exemplos simples. Veja mais detalhes no arquivo disponibilizado com o template original \texttt{orientacoes.tex}.
+
+Exemplo de uma imagem é ilustrada na Figura~\ref{fig:exemple01}. Não se esqueça de colocar o \textit{caption} acima da figura e a fonte (mesmo que seja autoria própria) abaixo.
+
+\begin{figure}[!htb]
+    \centering
+    \caption{Exemplo de figura simples.}
+    
+    \includegraphics[width=0.99\textwidth]{./dados/figuras/teste.jpg}
+    \label{fig:exemple01}
+    \fonte{Autoria própria}
+\end{figure}
+
+Abaixo colocam-se alguns exemplo de citações e de como referenciar o Apêndice~\ref{chap:apendiceA},  bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla blabla bla bla bla bla bla bla blabla bla bla bla bla.
+
+
+Caso você precise citar apenas o nome do autor, utilize o exemplo a seguir. \citeauthor{Cormen2009} realizou testes bla bla bla bla bla bla bla bla bla bla bla bla.
+
+
+Caso a citação seja em linha, ou seja, além do nome do autor você quer que apareça o ano, use o exemplo a seguir. \citeonline{Knuth1986}, bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla.
+
+Caso deseje que a citação apareça no final da página, considere o exemplo abaixo. Por fim bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla~\cite{Knuth1986}.
+
+\section{Exemplo de seção}
+\label{sec:exampleSection}
+
+Exemplo de texto e uso de equações, tal como na Equação \ref{eq:transf}:
+ 
+ \begin{equation}
+    \alpha = \left( \dfrac{\sqrt{x+y}}{\beta} \right )
+    \label{eq:transf}
+\end{equation}
+\noindent em que \textit{value[i]} é o valor de cinza em um pixel \textit{i}, e \textit{max} e \textit{min} são o máximo e mínimo global entre todas as imagens analisadas, respectivamente.
+
+A Figura~\ref{fig:exemple02} ilustra alguns exemplos de imagens da base.
+
+ \begin{figure}[!htb]
+    \caption{Exemplo de mais de uma imagem.}
+    \subfloat[]{\includegraphics[width=0.33\textwidth]{./dados/figuras/teste.jpg}}\hfill
+    \subfloat[]{\includegraphics[width=0.33\textwidth]{./dados/figuras/teste.jpg}}\hfill
+    \subfloat[]{\includegraphics[width=0.33\textwidth]{./dados/figuras/teste.jpg}}   
+     \label{fig:exemple02}
+     \fonte{\cite{Cormen2009}}
+\end{figure}
+
+\textbf{IMPORTANTE: Note que a legenda das figuras está localizada na parte superior! Além disso, a fonte sempre deve ser mencionada (mesmo que seja Autoria Própria)! A fonte está localizada abaixo da figura.}
+
+
+Abaixo é inserido um arquivo \texttt{tex} com um exemplo de algoritmo. 
+\input{dados/algoritmos/algoritmo1.tex}
+
+A Tabela~\ref{tab:knn} mostra o resultado da classificação utilizando k-NN. Ele se mostra inferior ao obtido pelo SVM em todos os quesitos. Testes também demonstraram maior inconsistência na classificação. 
+
+\begin{table}[!htb]
+\centering
+\caption{Resultado do \textit{GridSearch} para o KNN utilizando as características escolhidas neste trabalho}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{Parâmetros do classificador } & \multicolumn{4}{c|}{Avaliação } \\ \hline
+\textbf{n\_neighbour}   & \textbf{leaf size} & \textbf{weights} & \textbf{alghoritm} & \textbf{acc} & \textbf{sens} & \textbf{esp} & \textbf{f-1}\\\hline
+%knn1 & 1 & 30 & uniform & auto & 0,78 & 0,5 & 0,9 & 0,78 \\\hline
+%knn2 & 1 & 30 & uniform & auto & 57,14 & 0,25 & 0,7 & 0,57 \\\hline
+auto               & 30                 & 1                     & uniform          & 71,43\%           & 60\%                   & 78\%                    & 71\%                     
+\\ \hline
+\end{tabular}
+\label{tab:knn}
+\end{table}
+
+Caso prefira, é possível criar o código-fonte de tabelas em \LaTeX utilizando sites como o 
+\verb"https://www.tablesgenerator.com/"
+
+\textbf{IMPORTANTE: Assim como é o caso para figuras, note que a legenda das tabelas está localizada na parte superior!}
+
+Um exemplo de programa é mostrado abaixo. Lembre-se que você pode alterar as palavras reservadas (segundo o padrão da linguagem que está utilizando) no arquivo \verb"configuracoes\pacotes.tex"
+\begin{lstlisting}
+int** alocaMatriz(int nl, int nc) {
+    int **m, i;
+
+    m = (int**) malloc(sizeof (int*) * nl);
+
+    for (i = 0; i < nl; ++i)
+        m[i] = (int*) malloc(sizeof (int) * nc);
+
+    return m;
+}
+\end{lstlisting}
+
+
+
+
+
+
+

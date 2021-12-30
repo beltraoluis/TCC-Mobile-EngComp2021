@@ -1,0 +1,43 @@
+
+
+
+
+% INTRODUÇÃO-------------------------------------------------------------------
+
+\chapter{INTRODUÇÃO}
+\label{chap:introducao}
+
+Desde o lançamento do Iphone em 2007 o avanço do poder de processamento e a miniaturização dos processadores modernos evoluiu muito e permitiu a criação de dispositivos portáteis cada vez menores e mais poderosos muitas vezes comparáveis a computadores.\par
+A cada ano que se passa podemos notar o aumento do uso de \textit{smartphones} os quais se tornaram muito populares no Brasil, os \textit{smartphones} são dispositivos que usam sistemas embarcados onde o consumo de recursos é de vital importância para que o usuário tenha uma boa experiencia com o seu dispositivo durante um dia de uso \cite{Silva2017, Coutinho2014}.
+
+\section{\textbf{Motivação}}
+
+Um dos autores deste trabalho utilizou o protocolo STOMP em uma \textit{startup} onde ele trabalhava. Após a aquisição de dispositivos mais modernos pela \textit{startup}, observaram-se quedas frequentes de conexão neles, criando uma intermitência da ordem de segundos na época. Devido a esse problema, surgiu o interesse por parte dos autores de estudar o comportamento de alguns protocolos de comunicação para computação em névoa. O objetivo do estudo é descobrir como esses protocolos se comportam em um cenário de quedas de conexão frequentes, onde o sistema operacional faz um gerenciamento de qual processo pode usar o adaptador de rede e qual deve ser momentaneamente bloqueado. 
+
+Com a grande demanda na indústria por dispositivos conectados à rede, os dados estão sendo gerados nas bordas da rede em quantidades cada dia maiores (AZEVEDO, 2017), o que muitas vezes inviabiliza centralizar essa grande demanda em um único servidor. Por esse motivo, a computação em névoa se torna uma grande aliada na tarefa de tratar essas informações. 
+
+A camada de névoa está situada entre a nuvem e a IoT. Com a computação em névoa tem-se uma plataforma distribuída e altamente virtualizada, onde a informação geralmente está situada nas bordas da rede, podendo também centralizar alguns dados na nuvem. 
+
+Dessa forma, a camada de névoa é um meio de prover serviços de armazenamento e comunicação entre a nuvem e os dispositivos finais, podendo fornecer dados em tempo real de forma descentralizada e escalável (COUTINHO, CARNEIRO, GREVE, 2016). 
+
+Como é necessário que haja confiabilidade nos dispositivos que compõe uma rede de computação em névoa, este trabalho visa analisar o comportamento dos protocolos de comunicação AMQP, MQTT e STOMP em dispositivos móveis com relação ao uso de recursos escassos como energia, processamento e memória. 
+
+\section{\textbf{Objetivos}}
+
+Nesta seção estão presentes os objetivos que desejado e que devem ser alcançados no fim deste trabalho.
+
+\subsection{\textbf{Objetivo geral}}
+
+O objetivo geral é realizar uma análise do desempenho da computação em névoa ao utilizar os protocolos STOMP, MQTT e AMQP em dispositivos móveis onde, devido às limitações de energia e memória, o sistema operacional pode interferir no funcionamento da interface de rede.
+
+\subsection{\textbf{Objetivos específicos}}
+
+\noindent Os objetivos específicos desse trabalho são:
+
+\begin{compactitem}
+\item Apresentar os conceitos de computação em névoa, suas vantagens e seus elementos; 
+\item Estudar os protocolos de comunicação STOMP, MQTT e AMQP; 
+\item Analisar o desempenho dos protocolos STOMP, MQTT e AMPQ em relação às métricas: queda de conexão, consumo de memória, processamento e energia;
+\end{compactitem}
+
+\section{\textbf{Organização do documento}}
