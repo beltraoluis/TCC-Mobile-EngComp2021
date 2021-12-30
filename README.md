@@ -27,7 +27,7 @@ Os objetivos específicos desse trabalho são:
 * Estudar os protocolos de comunicação STOMP, MQTT e AMQP;
 * Analisar o desempenho dos protocolos STOMP, MQTT e AMPQ em relação às métricas: queda de conexão, consumo de memória, processamento e energia;
 
-![Diagrama de blocos](./latex/dados/figuras/)
+![Diagrama de blocos](./latex/dados/figuras/diagrama_de_blocos-v1.png)
 
 
 
