@@ -16,17 +16,20 @@ Com o avanço do poder de processamento e a miniaturização dos processadores m
 
 Computação em névoa, Dispositivos Móveis, AMQP, STOMP, MQTT.
 
-## DESCRIÇÃO DO PROJETO / CARACTERIZAÇÃO
+## 2 DESCRIÇÃO DO PROJETO / CARACTERIZAÇÃO
 
-### Objetivo Geral 
+### 2.1 Objetivo Geral 
 Este trabalho tem como objetivo geral realizar uma análise do desempenho da computação em névoa ao utilizar os protocolos STOMP, MQTT e AMQP em dispositivos móveis onde, devi-do às limitações de energia e memória, o sistema operacional pode interferir no funcionamento da interface de rede. 
 
-### Objetivos Específicos
+### 2.2 Objetivos Específicos
 Os objetivos específicos desse trabalho são:
 * Apresentar os conceitos de computação em névoa, suas vantagens e seus elemen-tos;
 * Estudar os protocolos de comunicação STOMP, MQTT e AMQP;
 * Analisar o desempenho dos protocolos STOMP, MQTT e AMPQ em relação às métricas: queda de conexão, consumo de memória, processamento e energia;
 
+### 2.3 Diagrama
+
+Figura 1: Diagrama das relações entre as tecnologias \
 ![Diagrama de blocos](./latex/dados/figuras/diagrama_de_blocos-v1.png)
 
 O diagrama das relações entre tecnologias é mostrado na Figura 1. O dispositivo móvel é o ponto central desta aplicação, não só porque ele faz parte da comunicação que será analisa-da, mas também porque a coordena. Esta comunicação ocorre entre o dispositivo móvel e um servidor de mensagens (broker), sendo que este faz parte da camada de névoa. Essa comuni-cação é representada pela seta de numeração 8.
@@ -50,9 +53,9 @@ O Flutter é um novo framework da Google que permite desenvolver a interface gr�
 
 Para a realização dos testes relativos à memória, processamento e energia as plataformas Android e iOS possuem ferramentas que permitem analisar essas características durante a exe-cução da aplicação.
 
-## MOTIVAÇÃO E RESULTADOS ESPERADOS
+## 3 MOTIVAÇÃO E RESULTADOS ESPERADOS
 
-### Motivação/Justificativa Resumida 
+### 3.1 Motivação/Justificativa Resumida 
 
 Um dos autores deste trabalho utilizou o protocolo STOMP em uma startup onde ele trabalhava. Após a aquisição de dispositivos mais modernos pela startup, observaram-se que-das frequentes de conexão neles, criando uma intermitência da ordem de segundos na época. Devido a esse problema, surgiu o interesse por parte dos autores de estudar o comportamento de alguns protocolos de comunicação para computação em névoa. O objetivo do estudo é des-cobrir como esses protocolos se comportam em um cenário de quedas de conexão frequentes, onde o sistema operacional faz um gerenciamento de qual processo pode usar o adaptador de rede e qual deve ser momentaneamente bloqueado.
 
@@ -64,13 +67,13 @@ Dessa forma, a camada de névoa é um meio de prover serviços de armazenamento 
 
 Como é necessário que haja confiabilidade nos dispositivos que compõe uma rede de computação em névoa, este trabalho visa analisar o comportamento dos protocolos de comuni-cação AMQP, MQTT e STOMP em dispositivos móveis com relação ao uso de recursos escas-sos como energia, processamento e memória.
 
-### Resultados Esperados
+### 3.2 Resultados Esperados
 
 Com este trabalho espera-se encontrar qual dos três protocolos analisados apresenta o melhor desempenho em um dispositivo móvel, usando como métricas o consumo de energia, memória, processamento e a resistência em caso de quedas de conexão. Com esses resultados, pode-se recomendar cada protocolo para diferentes situações com foco em aplicações fim.
 
-## METODOLOGIA E MECANISMOS DE GESTÃO
+## 4 METODOLOGIA E MECANISMOS DE GESTÃO
 
-### Metodologia
+### 4.1 Metodologia
 
 Nesta seção é apresentado como o projeto será implementado e como se pretende alcan-çar os resultados desejados.
 
@@ -92,7 +95,7 @@ Uma vez que os testes terminarem e os dados forem recolhidos, eles serão organi
 
 No período de “Pesquisas iniciais”, apresentado no cronograma, a escrita da monografia será iniciada. O texto será atualizado conforme as etapas apresentadas no cronograma forem sendo concluídas, caso seja julgado necessário. Após a etapa de “Análise dos resultados”, a monografia deverá ser concluída, onde o restante do texto será finalizado e os últimos ajustes serão feitos.
 
-### Análise de Riscos
+### 4.2 Análise de Riscos
 
 Os principais riscos para o projeto estão descritos abaixo:
 
@@ -159,5 +162,45 @@ Os principais riscos para o projeto estão descritos abaixo:
 **Probabilidade:** Média. \
 **Impacto:** Baixo. \
 **Ação: Mitigar:** Fazer diversas baterias de testes para reduzir o problema.
+
+### 4.3 Cronograma, Datas Importantes e Responsabilidades das Ações e Custos
+
+O cronograma simplificado, exibido na seção 4.3.1, aborda os meses em que serão realizadas as etapas descritas na seção 4.1, durante o desenvolvimento do projeto. Na seção 4.3.2 encon-tra-se o cronograma detalhado, com o total de horas dedicadas para cada ação de cada etapa do projeto. 
+
+#### 4.3.1 Cronograma simplificado
+
+![Cronograma](./latex/dados/figuras/Cronograma.png)
+
+
+
+| Etapa | Ação                           |	Entregável |  Início   | Fim       |  Tempo 
+| ----- | ------------------------------ |	---------- |  -------- | --------- |  ----- 
+| 1	    | Pesquisa                       |             |  15/06/21 |  19/06/21 |  10h
+|       | ------------------------------ |	---------- |  -------- | --------- |  ----- 
+|	    | Resumo                         | 	Resumo     |  21/06/21 |  26/06/21 |  12h
+|       | ------------------------------ |	---------- |  -------- | --------- |  ----- 
+|	    | Cronograma                     |             |  28/06/21 |  09/07/21 |  24h
+|       | ------------------------------ |	---------- |  -------- | --------- |  ----- 
+|	    | Análise de riscos              |             |  14/07/21 |  17/07/21 |  8h
+|       | ------------------------------ |	---------- |  -------- | --------- |  ----- 
+|	    | Metodologia                    |             |  19/07/21 |  24/07/21 |  12h
+| ----- | ------------------------------ |	---------- |  -------- | --------- |  ----- 
+2	Análise de requisitos		15/06/21	03/07/21	40h
+	Diagramas UML e design de telas		05/07/21	31/08/21	100h
+3	Configuração do Projeto e implementação da arquitetura base.		01/09/21	04/09/21	8h
+	Implementação da tela de teste dos protocolos e da regra de negócio		06/09/21	11/09/21	10h
+	Implementação da tela de configuração de teste e da regra de negócio		13/09/21	18/09/21	12h
+	Implementação da tela de envio de resultados e da regra de negócio		20/09/21	25/09/21	12h
+4	Estudo sobre Docker		01/09/21	11/09/21	18h
+	Configuração do RabbitMQ		13/09/21	18/09/21	12h
+	Configuração do PostgreSQL		20/09/21	25/09/21	12h
+5	Integração da biblioteca do Stomp		27/09/21	02/10/21	12h
+	Conexão com o servidor de mensagens		04/10/21	09/10/21	12h
+	Reconexão		11/10/21	23/10/21	20h
+6	Integração da biblioteca do MQTT		25/10/21	30/10/21	12h
+	Conexão com o servidor de mensagens		01/11/21	06/11/21	10h
+	Reconexão		08/11/21	20/11/21	22h
+7	Integração da biblioteca do AMQP		22/11/21	04/12/21	24h
+	Conexão com o servidor de mensagens		06/12/21	18/12/21	24h
 
 
