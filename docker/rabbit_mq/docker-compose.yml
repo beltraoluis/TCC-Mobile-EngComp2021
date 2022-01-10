@@ -1,7 +1,8 @@
+version: '3'
 services:
-  tccprojectrabbitmq:
+  tcc_rabbitmq:
     image: rabbitmq:3-management
-    container_name: tccprojectrabbitmq
+    container_name: tcc_rabbitmq
     restart: always
     build: .
     environment:
@@ -12,8 +13,8 @@ services:
       - 5672:5672
       - 5682:5682
       - 5692:5692
-    volumes: 
-      - ./dados:/var/lib/rabbitmq/
+    # volumes: 
+    #   - ./dados:/var/lib/rabbitmq/
 
 ################################################ Mosquitto
 

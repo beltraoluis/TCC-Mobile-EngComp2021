@@ -1,0 +1,25 @@
+version: '3'
+services:
+  tcc_rabbitmq:
+    image: rabbitmq:3-management
+    container_name: tcc_rabbitmq
+    restart: always
+    build: ./rabbit_mq
+    environment:
+      - RABBITMQ_CONFIG_FILE=/etc/rabbitmq/rabbitmq.conf
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit log [{console,[{level,debug}]}]
+    ports:
+      - 15672:15672
+      - 5672:5672
+      - 5682:5682
+      - 5692:5692
+  tcc_postgres:
+    image: postgres
+    container_name: tcc_postgres
+    environment:
+      POSTGRES_USERNAME: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - '5432:5432'
+    volumes: 
+      - /dados/PostgreSQL:/var/lib/postgresql/data
