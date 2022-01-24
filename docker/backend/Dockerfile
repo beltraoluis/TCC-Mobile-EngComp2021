@@ -1,0 +1,6 @@
+FROM python
+
+RUN pip3 install flask; \
+    pip3 install psycopg2-binary; \
+    pip3 install python-dotenv; \
+    pip3 install flask-cors

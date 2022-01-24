@@ -1,0 +1,7 @@
+{
+    "sent": 1,
+    "returned": 1,
+    "message_size": 100,
+    "protocol": "AMQP",
+    "platform": "android"
+}
