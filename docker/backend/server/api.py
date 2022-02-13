@@ -14,7 +14,7 @@ cors = CORS(app)
 def ok():
     return "server ok", 200
 
-# curl -X PUT -H "Content-Type: application/json" -d '{"accessKey":"IzJUQ0MwSm9zZTJMdWlzMg==","platform":"Test","protocol":"Test","messageSize":0,"sendTime":1644769145108,"returnTime":1644769145108,"intervalTime":0,"messageDelta":0,"messagesSent":0,"messagesReceived":0}'  http://172.17.0.2:5000/save/test
+
 @app.route("/save/test", methods=["PUT"])
 def set_repo():
     if request.method == "PUT":

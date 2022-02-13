@@ -1,6 +1,8 @@
 FROM python
-
-RUN pip3 install flask; \
-    pip3 install psycopg2-binary; \
-    pip3 install python-dotenv; \
-    pip3 install flask-cors
+COPY server.tar.gz ./server.tar.gz
+RUN apt-get install libpq-dev -y; \
+    pip install --upgrade pip; \
+    tar -xzf server.tar.gz; \
+    cd server; \
+    pip3 install -r requirements.txt; \
+    python3 api.py
