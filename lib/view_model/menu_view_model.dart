@@ -1,28 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:tcc_eng_comp/model/menu_business_model.dart';
 import 'package:tcc_eng_comp/util/fog_item.dart';
 import 'package:tcc_eng_comp/util/fog_protocol.dart';
 
 class MenuViewModel {
   var appBarTitle = 'Menu';
-  var _mainServer = '';
+  var mainServer = '';
   var mainServerLabel = 'Servidor principal';
-  var _messageBroker = '';
+  var messageBroker = '';
   var messageBrokerLabel = 'Servidor de mensagens';
-  var _password = '';
+  var username = '';
+  var usernameLabel = 'Usuário';
+  var password = '';
   var passwordLabel = 'Senha';
+  var messageSize = '';
+  var messageSizeLabel = 'Tamanho da mensagem';
+  var messageDelta = '';
+  var messageDeltaLabel = 'Intervalo entre mensagens (ms)';
+  var messageQty = '';
+  var messageQtyLabel = 'Quantidade de mensagens';
   var testButton = 'EXECUTAR TESTE';
   var testButtonRoute = '/test';
 
-  FogProtocol? protocol = FogProtocol.STOMP;
+  FogProtocol? protocol = FogProtocol.AMQP;
   var radioButtonLabels = [
-    FogItem('STOMP',  FogProtocol.STOMP),
+    FogItem('AMQP',  FogProtocol.AMQP),
     FogItem('MQTT', FogProtocol.MQTT),
-    FogItem('AMQP', FogProtocol.AMQP)
+    FogItem('STOMP', FogProtocol.STOMP)
   ];
-
+  var _model = MenuBusinessModel();
 
   MenuViewModel(){
+
     //TODO request previous saved data to model
+  }
+
+  Future<void> initialize() async {
+    mainServer = await _model.getBackendUrl();
+    messageBroker = await _model.getBrokerUrl();
+    username = await _model.getUser();
+    password =  await _model.getPassword();
+    messageSize = await _model.getMessageSize();
+    messageDelta = await _model.getMessageDelta();
+    messageQty = await _model.getMessageQty();
   }
 
   radioClick(FogProtocol? protocol) {
@@ -31,17 +51,5 @@ class MenuViewModel {
 
   buttonClick() {
     //TODO contact model to save data
-  }
-
-  set password(value) {
-    _password = value;
-  }
-
-  set messageBroker(value) {
-    _messageBroker = value;
-  }
-
-  set mainServer(value) {
-    _mainServer = value;
   }
 }

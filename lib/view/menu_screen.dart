@@ -13,6 +13,15 @@ class MenuPage extends StatefulWidget {
 var viewModel = Modular.get<MenuViewModel>();
 
 class _MenuPageState extends State<MenuPage> {
+
+  @override
+  void initState() {
+    viewModel.initialize().then((value) {
+      state
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +37,8 @@ class _MenuPageState extends State<MenuPage> {
             SizedBox(height: 16),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: TextField(
+              child: TextFormField(
+                  initialValue: viewModel.mainServer,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -47,7 +57,8 @@ class _MenuPageState extends State<MenuPage> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: TextField(
+              child: TextFormField(
+                  initialValue: viewModel.messageBroker,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -66,7 +77,28 @@ class _MenuPageState extends State<MenuPage> {
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
-              child: TextField(
+              child: TextFormField(
+                  initialValue: viewModel.username,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: viewModel.usernameLabel,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.yellow),
+                    ),
+                    labelStyle: TextStyle(fontSize: 16, color: Colors.yellow),
+                  ),
+                  onChanged: (text) {
+                    viewModel.username = text;
+                  }),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: TextFormField(
+                  initialValue: viewModel.password,
                   obscureText: true,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
@@ -125,6 +157,69 @@ class _MenuPageState extends State<MenuPage> {
                   });
                 },
               ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: TextFormField(
+                  initialValue: viewModel.messageSize,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: viewModel.messageSizeLabel,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.yellow),
+                    ),
+                    labelStyle: TextStyle(fontSize: 16, color: Colors.yellow),
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: (text) {
+                    viewModel.messageSize = text;
+                  }),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: TextFormField(
+                  initialValue: viewModel.messageQty,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: viewModel.messageQtyLabel,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.yellow),
+                    ),
+                    labelStyle: TextStyle(fontSize: 16, color: Colors.yellow),
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: (text) {
+                    viewModel.messageQty = text;
+                  }),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: TextFormField(
+                  initialValue: viewModel.messageDelta,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: viewModel.messageDeltaLabel,
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.yellow),
+                    ),
+                    labelStyle: TextStyle(fontSize: 16, color: Colors.yellow),
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: (text) {
+                    viewModel.messageDelta = text;
+                  }),
             ),
             Expanded(
                 child: SizedBox(
