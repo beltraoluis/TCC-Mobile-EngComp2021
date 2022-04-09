@@ -13,26 +13,11 @@ class MenuPage extends StatefulWidget {
 var viewModel = Modular.get<MenuViewModel>();
 
 class _MenuPageState extends State<MenuPage> {
-
-  @override
-  void initState() {
-    viewModel.initialize().then((value) {
-      state
-    });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black12,
-      appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: Text(viewModel.appBarTitle),
-          automaticallyImplyLeading: false),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+  late final Future<void> inicializacaoConcluida = viewModel.initialize();
+  Widget menuScreenWidget() {
+    return SafeArea(
+        child: ListView( ///Antes era Column
+          ///crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(height: 16),
             Padding(
@@ -223,28 +208,75 @@ class _MenuPageState extends State<MenuPage> {
             ),
             Expanded(
                 child: SizedBox(
-              height: 1,
-            )),
+                  height: 1,
+                )),
             Padding(
               padding: EdgeInsets.all(16),
               child: ElevatedButton(
-                child: Text(
-                  viewModel.testButton,
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                  child: Text(
+                    viewModel.testButton,
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  viewModel.buttonClick();
-                  Navigator.of(context).pushNamed(viewModel.testButtonRoute);
-                }
+                  onPressed: () {
+                    viewModel.buttonClick();
+                    Navigator.of(context).pushNamed(viewModel.testButtonRoute);
+                  }
               ),
             )
           ],
         ),
-      ),
+    );
+  }
+
+  Widget futureDataLoader() {
+    return FutureBuilder(
+        future: inicializacaoConcluida,
+        builder: (context, viewModelInitializationSnapshot) {
+          if (viewModelInitializationSnapshot.hasError) {
+            return Scaffold(
+              backgroundColor: Colors.black12,
+              body: Center(
+                child: Text(
+                  'Erro na inicialização!',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.yellow,
+                  ),
+                ),
+              ),
+            );
+          }
+          if (viewModelInitializationSnapshot.connectionState == ConnectionState.done) {
+            return menuScreenWidget();
+          }
+          else {
+            return Scaffold(
+              backgroundColor: Colors.black12,
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+        }
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: Colors.black12,
+        appBar: AppBar(
+            backgroundColor: Colors.black,
+            title: Text(viewModel.appBarTitle),
+            automaticallyImplyLeading: false),
+        body: SafeArea(
+          child: futureDataLoader(),
+        ),
     );
   }
 }
