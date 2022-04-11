@@ -30,11 +30,6 @@ class MenuViewModel {
   ];
   var _model = MenuBusinessModel();
 
-  MenuViewModel(){
-
-    //TODO request previous saved data to model
-  }
-
   Future<void> initialize() async {
     mainServer = await _model.getBackendUrl();
     messageBroker = await _model.getBrokerUrl();
@@ -50,6 +45,12 @@ class MenuViewModel {
   }
 
   buttonClick() {
-    //TODO contact model to save data
+    _model.setBackendUrl(mainServer);
+    _model.setBrokerUrl(messageBroker);
+    _model.setUser(username);
+    _model.setPassword(password);
+    _model.setMessageSize(messageSize);
+    _model.setMessageDelta(messageDelta);
+    _model.setMessageQty(messageQty);
   }
 }
