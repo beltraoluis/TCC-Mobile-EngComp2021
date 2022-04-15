@@ -1,4 +1,3 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tcc_eng_comp/repository/preference_repository.dart';
 import 'package:tcc_eng_comp/util/fog_protocol.dart';
 
