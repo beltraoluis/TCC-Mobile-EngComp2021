@@ -1,5 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tcc_eng_comp/util/fog_protocol.dart';
+import 'dart:developer';
 
 abstract class PreferenceRepository {
   static final _prefs = SharedPreferences.getInstance();
@@ -25,6 +25,7 @@ abstract class PreferenceRepository {
 
   static _setStringPref(String key, String value) async {
     await _prefs.then((prefs) => prefs.setString(key, value));
+    log('set value "$value" for key "$key"');
   }
 
   static Future<String> _getStringPref(String key, String defaultValue) async {
@@ -32,17 +33,21 @@ abstract class PreferenceRepository {
     await _prefs.then((prefs) {
       value = prefs.getString(key);
       if (value != null) {
-        return value;
+        log('returning value "$value" for key "$key"');
       }
     });
     if (value == null) {
-      await _prefs.then((prefs) => prefs.setString(key, defaultValue));
+      value = defaultValue;
+      await _prefs.then((prefs) => prefs.setString(key, value!));
+      log('set default value "$defaultValue" for key "$key"');
+      log('returning default value "$defaultValue" for key "$key"');
     }
-    return defaultValue;
+    return value!;
   }
 
   static _setIntPref(String key, int value) async {
     await _prefs.then((prefs) => prefs.setInt(key, value));
+    log('set value "$value" for key "$key"');
   }
 
   static Future<int> _getIntPref(String key, int defaultValue) async {
@@ -50,13 +55,16 @@ abstract class PreferenceRepository {
     await _prefs.then((prefs) {
       value = prefs.getInt(key);
       if (value != null) {
-        return value;
+        log('returning value "$value" for key "$key"');
       }
     });
     if (value == null) {
-      await _prefs.then((prefs) => prefs.setInt(key, defaultValue));
+      value = defaultValue;
+      await _prefs.then((prefs) => prefs.setInt(key, value!));
+      log('set default value "$defaultValue" for key "$key"');
+      log('returning default value "$defaultValue" for key "$key"');
     }
-    return defaultValue;
+    return value!;
   }
 
   static setBackendUrl(String value) {

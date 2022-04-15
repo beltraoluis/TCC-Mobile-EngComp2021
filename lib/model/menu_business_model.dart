@@ -38,7 +38,12 @@ class MenuBusinessModel {
   }
 
   setMessageSize(String value) {
-    PreferenceRepository.setMessageSize(int.parse(value));
+    if(value.isEmpty) {
+      PreferenceRepository.setMessageSize(0);
+    }
+    else {
+      PreferenceRepository.setMessageSize(int.parse(value));
+    }
   }
 
   Future<String> getMessageSize() async {
@@ -46,7 +51,12 @@ class MenuBusinessModel {
   }
 
   setMessageDelta(String value) {
-    PreferenceRepository.setMessageDelta(int.parse(value));
+    if(value.isEmpty) {
+      PreferenceRepository.setMessageDelta(0);
+    }
+    else {
+      PreferenceRepository.setMessageDelta(int.parse(value));
+    }
   }
 
   Future<String> getMessageDelta() async {
@@ -55,15 +65,33 @@ class MenuBusinessModel {
   }
 
   setMessageQty(String value) {
-    PreferenceRepository.setMessageQty(int.parse(value));
+    if(value.isEmpty) {
+      PreferenceRepository.setMessageQty(0);
+    }
+    else {
+      PreferenceRepository.setMessageQty(int.parse(value));
+    }
   }
 
   Future<String> getMessageQty() async {
     return (await PreferenceRepository.getMessageQty()).toString();
   }
 
-  setProtocol(FogProtocol value) {
-    PreferenceRepository.setProtocol(value.name);
+  setProtocol(FogProtocol? value) {
+    var protocol;
+    switch(value) {
+      case null:
+      case FogProtocol.AMQP:
+        protocol = PreferenceRepository.amqp;
+        break;
+      case FogProtocol.STOMP:
+        protocol = PreferenceRepository.stomp;
+        break;
+      case FogProtocol.MQTT:
+        protocol = PreferenceRepository.mqtt;
+        break;
+    }
+    PreferenceRepository.setProtocol(protocol);
   }
 
   Future<FogProtocol> getProtocol() async {
