@@ -1,5 +1,5 @@
 import 'package:tcc_eng_comp/repository/preference_repository.dart';
-import 'package:tcc_eng_comp/util/fog_protocol.dart';
+import 'package:tcc_eng_comp/data/fog_protocol.dart';
 
 class MenuBusinessModel {
   final _backendToken = 'IzJUQ0MwSm9zZTJMdWlzMg==';
@@ -13,11 +13,11 @@ class MenuBusinessModel {
   }
 
   setBrokerUrl(String value) {
-    PreferenceRepository.setBrokerUrl(value);
+    PreferenceRepository.setBrokerHost(value);
   }
 
-  Future<String> getBrokerUrl() async {
-    return PreferenceRepository.getBrokerUrl();
+  Future<String> getBrokerHost() async {
+    return PreferenceRepository.getBrokerHost();
   }
 
   setUser(String value) {

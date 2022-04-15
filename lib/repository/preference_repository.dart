@@ -12,7 +12,7 @@ abstract class PreferenceRepository {
   static final _messageQtyKey = 'message-qty-key';
   static final _protocolKey = 'protocol-key';
   static final _defaultBackend = 'https://tcc-jl-backend.herokuapp.com';
-  static final _defaultBroker = 'https://jackal.rmq.cloudamqp.com';
+  static final _defaultBroker = 'jackal.rmq.cloudamqp.com';
   static final _defaultUser = 'sivnzjfk';
   static final _defaultPassword = 'nTs2UKTM67C_1VGOOoO7gkRgYNxv2Udb';
   static final _defaultMessageSize = 250;
@@ -81,7 +81,7 @@ abstract class PreferenceRepository {
     return result;
   }
 
-  static setBrokerUrl(String value) {
+  static setBrokerHost(String value) {
     if(value.isEmpty) {
       _setStringPref(_brokerKey, _defaultBroker);
     } else {
@@ -89,7 +89,7 @@ abstract class PreferenceRepository {
     }
   }
 
-  static Future<String> getBrokerUrl() async {
+  static Future<String> getBrokerHost() async {
     String result = "";
     await _getStringPref(_brokerKey, _defaultBroker).then((value) => result = value);
     return result;
