@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:tcc_eng_comp/util/fog_protocol.dart';
+import 'package:tcc_eng_comp/data/fog_protocol.dart';
 import 'package:tcc_eng_comp/view_model/menu_view_model.dart';
 
 class MenuPage extends StatefulWidget {

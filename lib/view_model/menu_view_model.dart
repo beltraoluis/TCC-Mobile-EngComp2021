@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:tcc_eng_comp/model/menu_business_model.dart';
-import 'package:tcc_eng_comp/util/fog_item.dart';
-import 'package:tcc_eng_comp/util/fog_protocol.dart';
+import 'package:tcc_eng_comp/data/fog_item.dart';
+import 'package:tcc_eng_comp/data/fog_protocol.dart';
 
 class MenuViewModel {
   var appBarTitle = 'Menu';
@@ -32,7 +31,7 @@ class MenuViewModel {
 
   Future<void> initialize() async {
     mainServer = await _model.getBackendUrl();
-    messageBroker = await _model.getBrokerUrl();
+    messageBroker = await _model.getBrokerHost();
     username = await _model.getUser();
     password =  await _model.getPassword();
     messageSize = await _model.getMessageSize();
