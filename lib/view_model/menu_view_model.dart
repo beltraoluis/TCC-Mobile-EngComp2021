@@ -38,6 +38,7 @@ class MenuViewModel {
     messageSize = await _model.getMessageSize();
     messageDelta = await _model.getMessageDelta();
     messageQty = await _model.getMessageQty();
+    protocol = await _model.getProtocol();
   }
 
   radioClick(FogProtocol? protocol) {
@@ -52,5 +53,6 @@ class MenuViewModel {
     _model.setMessageSize(messageSize);
     _model.setMessageDelta(messageDelta);
     _model.setMessageQty(messageQty);
+    _model.setProtocol(protocol);
   }
 }
