@@ -15,7 +15,7 @@ class CoreRepository {
     }
   }
 
-  Future<bool> testSendDataToMainServer(mainServer, messageBody) async {
+  Future<bool> sendDataToMainServer(mainServer, messageBody) async {
     var url = Uri.parse(mainServer + '/save/test');
     final messageHeader = {"Content-type": "application/json"};
     String jsonMessageBody = jsonEncode(messageBody);
