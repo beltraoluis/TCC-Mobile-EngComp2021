@@ -1,14 +1,16 @@
+import 'dart:developer';
+
 import "package:dart_amqp/dart_amqp.dart";
 import 'package:tcc_eng_comp/repository/fog_repository.dart';
 import 'package:tcc_eng_comp/repository/preference_repository.dart';
 
 class AMQPRepository extends FogRepository {
   late Client _client;
-  late Channel _channel;
-  Function(String) _onMessage = (message) => {};
+  late ConnectionSettings _settings;
+  final _queueName = "tcc-amqp";
 
-  void connect(Function() onConnect ) async {
-    ConnectionSettings settings = ConnectionSettings(
+  void init() async{
+    _settings = ConnectionSettings(
         host: await PreferenceRepository.getBrokerHost(),
         port: 5672,
         virtualHost: await PreferenceRepository.getUser(),
@@ -16,34 +18,31 @@ class AMQPRepository extends FogRepository {
             await PreferenceRepository.getUser(),
             await PreferenceRepository.getPassword())
     );
-    _client = Client(settings: settings);
-    _channel = await _client.channel();
-    Queue queue = await _channel.queue("tcc-amqp");
+    _client = Client(settings: _settings);
+  }
+
+  AMQPRepository() {
+    init();
+  }
+
+  Future<FogRepository> connect(Function(String) onMessage ) async {
+    var channel = await _client.channel();
+    var queue = await channel.queue(_queueName);
+    log('AMQP connected');
     Consumer consumer = await queue.consume();
     consumer.listen((AmqpMessage message) {
-      _onMessage.call(message.payloadAsString);
-      // Get the payload as a string
-      print(" [x] Received string: ${message.payloadAsString}");
-
-      // Or unserialize to json
-      print(" [x] Received json: ${message.payloadAsJson}");
-
-      // Or just get the raw data as a Uint8List
-      print(" [x] Received raw: ${message.payload}");
-
-      // The message object contains helper methods for
-      // replying, ack-ing and rejecting
-      message.reply("world");
+      onMessage.call(message.payloadAsString);
     });
+    consumer.listen((AmqpMessage message) => onMessage.call(message.payloadAsString));
+    return this;
   }
 
   void send(String message) async {
-    Exchange exchange = await _channel.exchange("logs", ExchangeType.FANOUT);
-    exchange.publish(message, null);
-  }
-
-  void onMessageReceived(Function(String) onMessage){
-    _onMessage = onMessage;
+    var client = Client(settings: _settings);
+    var channel = await client.channel();
+    var queue = await channel.queue(_queueName);
+    queue.publish(message);
+    client.close();
   }
 
   void disconnect(Function() onDisconnect) {

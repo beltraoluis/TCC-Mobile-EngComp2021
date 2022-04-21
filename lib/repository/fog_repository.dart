@@ -1,7 +1,6 @@
 
 abstract class FogRepository {
-  void connect(Function() onConnect );
+  Future<FogRepository> connect(Function(String) onMessage);
   void disconnect(Function() onDisconnect);
-  void onMessageReceived(Function(String) onMessage);
   void send(String message);
 }

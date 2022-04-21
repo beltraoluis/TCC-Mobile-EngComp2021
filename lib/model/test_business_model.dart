@@ -1,5 +1,7 @@
 import 'package:tcc_eng_comp/data/fog_protocol.dart';
+import 'package:tcc_eng_comp/repository/fog_repository.dart';
 import 'package:tcc_eng_comp/repository/preference_repository.dart';
+import 'package:tcc_eng_comp/repository/fog/amqp_repository.dart';
 
 class TestBusinessModel {
   Future<int> getMessageSize() async {
@@ -15,12 +17,26 @@ class TestBusinessModel {
     return PreferenceRepository.getMessageQty();
   }
 
-  Future<FogProtocol> getProtocol() async {
+  Future<FogProtocol> _getProtocol() async {
     var protocolName = await PreferenceRepository.getProtocol();
     switch (protocolName) {
       case PreferenceRepository.mqtt: return FogProtocol.MQTT;
       case PreferenceRepository.stomp: return FogProtocol.STOMP;
       default: return FogProtocol.AMQP;
     }
+  }
+
+
+  Future<FogRepository> fogRepository() async {
+    FogProtocol _protocol = await _getProtocol();
+    var result;
+    switch(_protocol) {
+      case FogProtocol.STOMP:
+      case FogProtocol.MQTT:
+      case FogProtocol.AMQP: {
+        result = AMQPRepository();
+      }
+    }
+    return Future.delayed(Duration(seconds: 1), () => result);
   }
 }

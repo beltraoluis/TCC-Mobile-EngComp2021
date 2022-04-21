@@ -15,7 +15,7 @@ class _TestPageState extends State<TestPage> {
   var viewModel = Modular.get<TestViewModel>();
 
   _TestPageState() {
-    viewModel.task = viewModel.onFinish().listen((_) {
+    viewModel.task = viewModel.execute().listen((_) {
       Navigator.of(context).pushNamed(viewModel.finishRoute);
     });
   }
