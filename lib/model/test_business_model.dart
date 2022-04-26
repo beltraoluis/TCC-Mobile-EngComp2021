@@ -1,4 +1,5 @@
 import 'package:tcc_eng_comp/data/fog_protocol.dart';
+import 'package:tcc_eng_comp/repository/fog/mqtt_repository.dart';
 import 'package:tcc_eng_comp/repository/fog_repository.dart';
 import 'package:tcc_eng_comp/repository/preference_repository.dart';
 import 'package:tcc_eng_comp/repository/fog/amqp_repository.dart';
@@ -31,8 +32,11 @@ class TestBusinessModel {
     FogProtocol _protocol = await _getProtocol();
     var result;
     switch(_protocol) {
+      case FogProtocol.MQTT: {
+        result = MqttRepository();
+        break;
+      }
       case FogProtocol.STOMP:
-      case FogProtocol.MQTT:
       case FogProtocol.AMQP: {
         result = AMQPRepository();
       }
