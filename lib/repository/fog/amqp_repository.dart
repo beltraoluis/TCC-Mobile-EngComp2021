@@ -13,7 +13,7 @@ class AMQPRepository extends FogRepository {
     _settings = ConnectionSettings(
         host: await PreferenceRepository.getBrokerHost(),
         port: 5672,
-        virtualHost: await PreferenceRepository.getUser(),
+        virtualHost: '/',//await PreferenceRepository.getUser(),
         authProvider: AmqPlainAuthenticator(
             await PreferenceRepository.getUser(),
             await PreferenceRepository.getPassword())

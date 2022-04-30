@@ -12,9 +12,9 @@ abstract class PreferenceRepository {
   static final _messageQtyKey = 'message-qty-key';
   static final _protocolKey = 'protocol-key';
   static final _defaultBackend = 'https://tcc-jl-backend.herokuapp.com';
-  static final _defaultBroker = 'jackal.rmq.cloudamqp.com';
-  static final _defaultUser = 'sivnzjfk';
-  static final _defaultPassword = 'nTs2UKTM67C_1VGOOoO7gkRgYNxv2Udb';
+  static final _defaultBroker = '192.168.1.101';
+  static final _defaultUser = 'mqttUser';
+  static final _defaultPassword = 'mqttUser';
   static final _defaultMessageSize = 250;
   static final _defaultMessageDelta = (300000/100).floor();
   static final _defaultMessageQty = 100;
