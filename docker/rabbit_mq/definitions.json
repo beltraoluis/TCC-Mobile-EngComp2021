@@ -13,7 +13,12 @@
         {
             "name": "mqttUser",
             "password":  "mqttUser",
-            "tags": "administrator"
+            "tags": "management"
+        },
+        {
+            "name": "guest",
+            "password":  "guest",
+            "tags": "management"
         }
     ],
     "vhost": [
@@ -38,6 +43,13 @@
         },
         {
             "user": "mqttUser",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        },
+        {
+            "user": "guest",
             "vhost": "/",
             "configure": ".*",
             "write": ".*",

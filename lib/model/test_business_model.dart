@@ -1,5 +1,6 @@
 import 'package:tcc_eng_comp/data/fog_protocol.dart';
 import 'package:tcc_eng_comp/repository/fog/mqtt_repository.dart';
+import 'package:tcc_eng_comp/repository/fog/stomp_repository.dart';
 import 'package:tcc_eng_comp/repository/fog_repository.dart';
 import 'package:tcc_eng_comp/repository/preference_repository.dart';
 import 'package:tcc_eng_comp/repository/fog/amqp_repository.dart';
@@ -36,7 +37,10 @@ class TestBusinessModel {
         result = MqttRepository();
         break;
       }
-      case FogProtocol.STOMP:
+      case FogProtocol.STOMP: {
+        result = StompRepository();
+        break;
+      }
       case FogProtocol.AMQP: {
         result = AMQPRepository();
       }
