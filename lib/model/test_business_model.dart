@@ -45,6 +45,6 @@ class TestBusinessModel {
         result = AMQPRepository();
       }
     }
-    return Future.delayed(Duration(seconds: 1), () => result);
+    return Future.delayed(Duration(milliseconds: 500), () => result);
   }
 }

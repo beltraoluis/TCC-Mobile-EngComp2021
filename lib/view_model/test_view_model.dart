@@ -40,7 +40,7 @@ class TestViewModel {
         });
       }
     });
-    return Future.delayed(Duration(seconds: 5), () => true).asStream();
+    return Future.delayed(Duration(seconds: 15), () => true).asStream();
   }
 
   abortClick() {

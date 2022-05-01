@@ -7,24 +7,22 @@ import 'package:tcc_eng_comp/repository/fog_repository.dart';
 import 'package:tcc_eng_comp/repository/preference_repository.dart';
 
 class StompRepository extends FogRepository {
-  static final StompRepository _singleton = StompRepository._internal();
-  Function(String) _onMessage = (value) => null;
-
-  factory StompRepository() {
-    return _singleton;
-  }
-
-  StompRepository._internal();
-  
+  late Function(String) _onMessage;
   late StompClient client;
+  var _isConnected = false;
 
   void onConnect(StompFrame frame) {
+    _isConnected = true;
     client.subscribe(
-      destination: '/tcc/stomp',
+      destination: 'STOMP.Tx',
       callback: (frame) {
-        _onMessage.call(frame.body ?? '');
+        _onMessage.call(frame.body ?? 'message: null');
       },
     );
+  }
+
+  void onDisconnect(StompFrame frame) {
+    print(frame.toString());
   }
 
   Future<FogRepository> connect(Function(String) onMessage) async {
@@ -34,25 +32,31 @@ class StompRepository extends FogRepository {
       config: StompConfig(
         url: 'ws://${await PreferenceRepository.getBrokerHost()}:5692',
         onConnect: onConnect,
+        onDisconnect: onDisconnect,
+        onUnhandledFrame: onDisconnect,
+        onUnhandledMessage: onDisconnect,
+        onUnhandledReceipt: onDisconnect,
+        onDebugMessage: (String message) => print(message),
         beforeConnect: () async {
           print('waiting to connect...');
           await Future.delayed(Duration(milliseconds: 200));
           print('connecting...');
         },
         onWebSocketError: (dynamic error) => print(error.toString()),
-          stompConnectHeaders: {
-            'login': await PreferenceRepository.getUser(),
-            'passcode': await PreferenceRepository.getPassword()
-          }
+        stompConnectHeaders: {
+          'login': await PreferenceRepository.getUser(),
+          'passcode': await PreferenceRepository.getPassword()
+        }
       ),
     );
     client.activate();
+    await Future.delayed(Duration(milliseconds: 200));
     return this;
   }
   
   void send(String message) {
     client.send(
-        destination: '/tcc/stomp',
+        destination: '/exchange/project.STOMPExchange/STOMP.RxKey',
         body: message,
         headers: {}
     );
