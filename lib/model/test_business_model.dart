@@ -1,5 +1,6 @@
 import 'package:tcc_eng_comp/data/fog_protocol.dart';
 import 'package:tcc_eng_comp/repository/fog/mqtt_repository.dart';
+import 'package:tcc_eng_comp/repository/fog/stomp_repository.dart';
 import 'package:tcc_eng_comp/repository/fog_repository.dart';
 import 'package:tcc_eng_comp/repository/preference_repository.dart';
 import 'package:tcc_eng_comp/repository/fog/amqp_repository.dart';
@@ -51,7 +52,11 @@ class TestBusinessModel {
         result = MqttRepository();
         break;
       }
-      case FogProtocol.STOMP:
+      case FogProtocol.STOMP: {
+        this.protocol = 'STOMP';
+        result = StompRepository();
+        break;
+      }
       case FogProtocol.AMQP: {
       this.protocol = 'AMQP';
         result = AMQPRepository();
@@ -73,10 +78,10 @@ class TestBusinessModel {
           await Future.delayed(Duration(seconds: 1), () => true);
           try {
             client.send('teste');
-            await Future.delayed(Duration(seconds: 1), () => true);
+            await Future.delayed(Duration(milliseconds: 100), () => true);
             client.send('x');
           } finally {
-            print('mensagens enviadas ou não');
+            print('Tentaiva de envio de mensagens para teste concluído');
           }
           return true;
         });
@@ -97,22 +102,23 @@ class TestBusinessModel {
     String baseMessageCalcString;
     String baseMessage;
     var baseMessageCalcValue;
-    var messageObject = {
-                            'accessKey': 'IzJUQ0MwSm9zZTJMdWlzMg==',
-                            'platform': platform,
-                            'protocol': this.protocol,
-                            'messageSize': messageSize,
-                            'sendTime': 0,
-                            'returnTime': 0,
-                            'intervalTime': 0,
-                            'messageDelta': messageDelta,
-                            'messagesSent': 0,
-                            'messagesReceived': 0,
-                            'x': ''
-                        };
+    var messageObject;
 
     fogRepository().then((client) async {
       this.client = client;
+      messageObject = {
+        'accessKey': 'IzJUQ0MwSm9zZTJMdWlzMg==',
+        'platform': platform,
+        'protocol': this.protocol,
+        'messageSize': messageSize,
+        'sendTime': 0,
+        'returnTime': 0,
+        'intervalTime': 0,
+        'messageDelta': messageDelta,
+        'messagesSent': 0,
+        'messagesReceived': 0,
+        'x': ''
+      };
 
       client.connect((message) {
         print(message);
@@ -122,19 +128,17 @@ class TestBusinessModel {
       });
       await Future.delayed(Duration(milliseconds: 1000));
       var msgIndex = 1;
-      for (var i = 0 ; i < 3; i++) {
+      for (var i = 0 ; i < 10; i++) {
         for (var j = 0 ; j < messageQty; j++) {
           messageObject['sendTime'] = DateTime.now().millisecondsSinceEpoch;
           messageObject['messagesSent'] = msgIndex;
           msgIndex += 1;
           messageObject['x'] = '';
           baseMessageCalcString = jsonEncode(messageObject);
-          print(baseMessageCalcString.length);
-          print(messageSize);
 
-          if ( messageSize - baseMessageCalcString.length*4 > 0 ) {
+          if ( messageSize - baseMessageCalcString.length > 0 ) {
             baseMessage = '';
-            baseMessageCalcValue = (messageSize - baseMessageCalcString.length*4)/4 ;
+            baseMessageCalcValue = messageSize - baseMessageCalcString.length ;
             for (var k = 0; k < baseMessageCalcValue; k++) {
               baseMessage += '0';
             }

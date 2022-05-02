@@ -28,13 +28,6 @@ class TestViewModel {
     Future.delayed(Duration(seconds: 5), () {
       initialize();
       _model.testConnection().then((value) async {
-          /*var randomDelay = new Random();
-          for (var i = 0 ; i < 50; i++) {
-            for (var j = 0 ; j < _messageQty; j++) {
-              await Future.delayed(Duration(milliseconds: _messageDelta), () => client.send(_messageSize, _messageQty, ));
-            }
-            await Future.delayed(Duration(milliseconds: randomDelay.nextInt(1001)));
-          }*/
           log('Conexão testada. Iniciando os envios');
           _model.executeTest(_messageSize, _messageQty, _messageDelta);
         });

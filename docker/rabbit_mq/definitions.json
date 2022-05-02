@@ -99,7 +99,7 @@
             "auto_delete": false,
             "arguments":{
                 "x-dead-letter-exchange":"project.rejectExchange",
-                "x-message-ttl":10000,
+                "x-message-ttl":1,
                 "x-queue-type":"classic"
             }
         },
@@ -111,7 +111,7 @@
             "arguments":{
                 "x-dead-letter-exchange":"project.MQTTExchange",
                 "x-dead-letter-routing-key":"MQTT.TxKey",
-                "x-message-ttl":10000,
+                "x-message-ttl":1,
                 "x-queue-type":"classic"
             }
         },
@@ -136,7 +136,7 @@
             "auto_delete": false,
             "arguments":{
                 "x-dead-letter-exchange":"project.rejectExchange",
-                "x-message-ttl":500,
+                "x-message-ttl":1,
                 "x-queue-type":"classic"
             }
         }

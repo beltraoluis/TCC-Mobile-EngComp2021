@@ -1,11 +1,16 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:stomp_dart_client/stomp.dart';
-import 'package:stomp_dart_client/stomp_config.dart';
+//import 'package:stomp_dart_client/stomp.dart';
+//import 'package:stomp_dart_client/stomp_config.dart';
 import 'package:stomp_dart_client/stomp_frame.dart';
+import 'package:tcc_eng_comp/repository/fog_repository.dart';
+import 'package:tcc_eng_comp/repository/preference_repository.dart';
+import 'package:stomp/stomp.dart';
+import "package:stomp/vm.dart" as StompAdapter;
 
-class StompRepository {
+class StompRepository extends FogRepository  {
   static final StompRepository _singleton = StompRepository._internal();
+  Function(String) _onMessage = (value) => null;
 
   factory StompRepository() {
     return _singleton;
@@ -15,46 +20,30 @@ class StompRepository {
   
   late StompClient client;
 
-  void onConnect(StompFrame frame) {
-    client.subscribe(
-      destination: '/topic/test/subscription',
-      callback: (frame) {
-        List<dynamic>? result = json.decode(frame.body!);
-        print(result);
-      },
-    );
+  void onReciveMessage(var headers, var message) {
+    print("<<received: message");
+    print("Recieve $message");
+    _onMessage.call(message);
   }
 
-  void connect() {
+  Future<FogRepository> connect(Function(String) onMessage) async {
     // TODO: Tratar conexão anterior
-    client = StompClient(
-      config: StompConfig(
-        url: 'ws://192.168.1.150:61613',
-        onConnect: onConnect,
-        beforeConnect: () async {
-          print('waiting to connect...');
-          await Future.delayed(Duration(milliseconds: 200));
-          print('connecting...');
-        },
-        onWebSocketError: (dynamic error) => print(error.toString()),
-          stompConnectHeaders: {
-            'login': 'admin',
-            'passcode': 'admin123456'
-          }
-      ),
-    );
-    client.activate();
+    _onMessage = onMessage;
+    StompAdapter.connect(await PreferenceRepository.getBrokerHost(), port: 5692, login: await PreferenceRepository.getUser(), passcode: await PreferenceRepository.getPassword())
+    .then((StompClient client) {
+      this.client = client;
+        client.subscribeString("TCC STOMP", 'STOMP.Tx', this.onReciveMessage, ack: AUTO, matcher: all);
+        //client.unsubscribe("project.STOMPExchange");
+        //client.disconnect();
+      });
+    return this;
   }
   
   void send(String message) {
-    client.send(
-        destination: '/foo/bar',
-        body: message,
-        headers: {}
-    );
+    client.sendString("/exchange/project.STOMPExchange/STOMP.RxKey", message);
   }
   
-  void disconnect() {
-    client.deactivate();
+  void disconnect(Function() onDisconnect) {
+    client.disconnect();
   }
 }
