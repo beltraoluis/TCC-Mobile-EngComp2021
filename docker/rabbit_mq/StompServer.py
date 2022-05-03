@@ -14,7 +14,7 @@ class MyListener(stomp.ConnectionListener):
     print('received a message "%s"' % message)  
    
 # Define a STOMP connection and port  
-conn = stomp.Connection([('192.168.0.176', 5692)])
+conn = stomp.Connection([('localhost', 5692)])
 conn.set_listener('MyListener', MyListener())
 conn.connect('guest', 'guest') # define the username/password    
    

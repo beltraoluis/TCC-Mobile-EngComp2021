@@ -32,7 +32,7 @@ class TestViewModel {
           _model.executeTest(_messageSize, _messageQty, _messageDelta);
         });
     });
-    return Future.delayed(Duration(seconds: 15), () => true).asStream();
+    return Future.delayed(Duration(seconds: 5), () => true).asStream();
   }
 
   abortClick() {
