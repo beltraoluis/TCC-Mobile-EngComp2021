@@ -69,20 +69,22 @@ class TestBusinessModel {
       if (client == null){
         fogRepository().then((client) async {
           this.client = client;
-          client.connect((message) {
-            print(message);
-            if (message == 'x') {
-              client.disconnect(() => print('disconnected'));
+          /*if (this.protocol != 'STOMP') {
+            client.connect((message) {
+              print(message);
+              if (message == 'x') {
+                client.disconnect(() => print('disconnected'));
+              }
+            });
+            await Future.delayed(Duration(seconds: 1), () => true);
+            try {
+              client.send('teste');
+              await Future.delayed(Duration(milliseconds: 100), () => true);
+              client.send('x');
+            } finally {
+              print('Tentaiva de envio de mensagens para teste concluído');
             }
-          });
-          await Future.delayed(Duration(seconds: 1), () => true);
-          try {
-            client.send('teste');
-            await Future.delayed(Duration(milliseconds: 100), () => true);
-            client.send('x');
-          } finally {
-            print('Tentaiva de envio de mensagens para teste concluído');
-          }
+          }*/
           return true;
         });
       }

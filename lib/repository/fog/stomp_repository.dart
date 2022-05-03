@@ -32,7 +32,7 @@ class StompRepository extends FogRepository  {
     StompAdapter.connect(await PreferenceRepository.getBrokerHost(), port: 5692, login: await PreferenceRepository.getUser(), passcode: await PreferenceRepository.getPassword())
     .then((StompClient client) {
       this.client = client;
-        client.subscribeString("TCC STOMP", 'STOMP.Tx', this.onReciveMessage, ack: AUTO, matcher: all);
+        client.subscribeString("TCC STOMP", 'STOMP.Rx', this.onReciveMessage, ack: AUTO, matcher: all);
         //client.unsubscribe("project.STOMPExchange");
         //client.disconnect();
       });
