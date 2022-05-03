@@ -111,7 +111,7 @@
             "auto_delete": false,
             "arguments":{
                 "x-dead-letter-exchange":"project.rejectExchange",
-                "x-message-ttl":10000,
+                "x-message-ttl":1,
                 "x-queue-type":"classic"
             }
         },
@@ -123,7 +123,7 @@
             "arguments":{
                 "x-dead-letter-exchange":"project.MQTTExchange",
                 "x-dead-letter-routing-key":"MQTT.TxKey",
-                "x-message-ttl":10000,
+                "x-message-ttl":1,
                 "x-queue-type":"classic"
             }
         },
@@ -135,22 +135,11 @@
             "arguments": {}
         },
         {
-            "name": "STOMP.Tx",
-            "vhost": "/",
-            "durable": true,
-            "auto_delete": false,
-            "arguments": {}
-        },
-        {
             "name": "STOMP.Rx",
             "vhost": "/",
             "durable": true,
             "auto_delete": false,
-            "arguments":{
-                "x-dead-letter-exchange":"project.rejectExchange",
-                "x-message-ttl":500,
-                "x-queue-type":"classic"
-            }
+            "arguments":{}
         }
     ],
     "bindings": [
@@ -175,7 +164,7 @@
             "vhost": "/",
             "destination": "STOMP.Rx",
             "destination_type": "queue",
-            "routing_key": "STOMP.RxKey",
+            "routing_key": "STOMP.#",
             "arguments": {}
         },
         {
@@ -192,14 +181,6 @@
             "destination": "MQTT.Tx",
             "destination_type": "queue",
             "routing_key": "MQTT.TxKey",
-            "arguments": {}
-        },
-        {
-            "source": "project.rejectExchange",
-            "vhost": "/",
-            "destination": "STOMP.Tx",
-            "destination_type": "queue",
-            "routing_key": "STOMP.#",
             "arguments": {}
         }
     ]

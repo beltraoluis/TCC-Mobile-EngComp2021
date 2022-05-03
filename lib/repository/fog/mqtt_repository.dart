@@ -14,17 +14,18 @@ class MqttRepository extends FogRepository {
     var identifier = 'mqtt-${await PreferenceRepository.getUser()}';
     var user = await PreferenceRepository.getUser();
     user = '$user:$user';
-    client = MqttServerClient(await PreferenceRepository.getBrokerHost(), '#');
+    client = MqttServerClient(await PreferenceRepository.getBrokerHost(), '');
     client.logging(on: true);
-    client.port = 1883;
+    client.port = 5682;
     client.keepAlivePeriod = 20;
     client.onConnected = onConnected;
     final connMess = MqttConnectMessage()
-        .withClientIdentifier(identifier);
+        .withClientIdentifier(identifier)
+        .startClean();
     print('connecting...');
     client.connectionMessage = connMess;
     try {
-      await client.connect(user,await PreferenceRepository.getPassword());
+      await client.connect();
     } on NoConnectionException catch (e) {
       print('exception: $e');
       client.disconnect();
@@ -39,7 +40,7 @@ class MqttRepository extends FogRepository {
       client.disconnect();
       exit(-1);
     }
-    client.subscribe(topic, MqttQos.exactlyOnce);
+    client.subscribe(topic, MqttQos.atLeastOnce);
     client.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? mqttMessage) {
       final receivedMessage = mqttMessage![0].payload as MqttPublishMessage;
       final payload = MqttPublishPayload.bytesToStringAsString(receivedMessage.payload.message);
@@ -51,8 +52,8 @@ class MqttRepository extends FogRepository {
   Future<void> send(String message) async {
     final builder = MqttClientPayloadBuilder();
     builder.addString(message);
-    client.publishMessage(topic, MqttQos.exactlyOnce, builder.payload!);
-    await MqttUtilities.asyncSleep(60);
+    client.publishMessage(topic, MqttQos.atLeastOnce, builder.payload!);
+    //await MqttUtilities.asyncSleep(60);
   }
 
   void disconnect(Function() onDisconnect) async {

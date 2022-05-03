@@ -27,18 +27,10 @@ class TestViewModel {
   Stream<bool> execute() {
     Future.delayed(Duration(seconds: 5), () {
       initialize();
-      if (client == null){
-        _model.fogRepository().then((client) {
-          this.client = client;
-          client.connect((message) {
-            log(message);
-            if (message == 'x') {
-              client.disconnect(() => log('disconnected'));
-            }
-          });
-          client.send('teste');
+      _model.testConnection().then((value) async {
+          log('Conexão testada. Iniciando os envios');
+          _model.executeTest(_messageSize, _messageQty, _messageDelta);
         });
-      }
     });
     return Future.delayed(Duration(seconds: 15), () => true).asStream();
   }
