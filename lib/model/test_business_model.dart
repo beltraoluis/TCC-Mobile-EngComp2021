@@ -1,3 +1,4 @@
+import 'package:flutter_beep/flutter_beep.dart';
 import 'package:tcc_eng_comp/data/fog_protocol.dart';
 import 'package:tcc_eng_comp/repository/fog/mqtt_repository.dart';
 import 'package:tcc_eng_comp/repository/fog/stomp_repository.dart';
@@ -155,5 +156,31 @@ class TestBusinessModel {
       }
       await Future.delayed(Duration(seconds: 1), () => client.send('x'));
     });
+  }
+
+  Future<void> executeEnergyTest(int messageSize, int messageQty, int messageDelta) async{
+    fogRepository().then((client) async {
+      FlutterBeep.beep();
+      this.client = client;
+      client.connect((message) {
+        print(message);
+        if (message == 'x') {
+          client.disconnect(() => print('disconnected'));
+        }
+      });
+      var message = _generateString(messageSize);
+      for (var i = 0; i < messageQty; i++) {
+        await Future.delayed(Duration(milliseconds: messageDelta), () => client.send(message));
+      }
+      FlutterBeep.beep();
+    });
+  }
+  
+  String _generateString(int size){
+    var str = '';
+    for (var i = 0; i < size; i++) {
+      str = str + '0';
+    }
+    return str;
   }
 }

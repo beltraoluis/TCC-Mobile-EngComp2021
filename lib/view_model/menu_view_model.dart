@@ -18,6 +18,8 @@ class MenuViewModel {
   var messageDeltaLabel = 'Intervalo entre mensagens (ms)';
   var messageQty = '';
   var messageQtyLabel = 'Quantidade de mensagens';
+  var energyText = 'Teste de energia';
+  var isEnergyTest = false;
   var testButton = 'EXECUTAR TESTE';
   var testButtonRoute = '/test';
 
@@ -37,6 +39,7 @@ class MenuViewModel {
     messageSize = await _model.getMessageSize();
     messageDelta = await _model.getMessageDelta();
     messageQty = await _model.getMessageQty();
+    isEnergyTest = await _model.getEnergyTest();
     protocol = await _model.getProtocol();
   }
 
@@ -52,6 +55,7 @@ class MenuViewModel {
     _model.setMessageSize(messageSize);
     _model.setMessageDelta(messageDelta);
     _model.setMessageQty(messageQty);
+    _model.setEnergyTest(isEnergyTest);
     _model.setProtocol(protocol);
   }
 }

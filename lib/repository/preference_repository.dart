@@ -10,6 +10,7 @@ abstract class PreferenceRepository {
   static final _messageSizeKey = 'message-size-key';
   static final _messageDeltaKey = 'message-delta-key';
   static final _messageQtyKey = 'message-qty-key';
+  static final _energyTestKey = 'energy-test-key';
   static final _protocolKey = 'protocol-key';
   static final _defaultBackend = 'https://tcc-jl-backend.herokuapp.com';
   static final _defaultBroker = '192.168.1.101';
@@ -18,10 +19,33 @@ abstract class PreferenceRepository {
   static final _defaultMessageSize = 250;
   static final _defaultMessageDelta = (300000/100).floor();
   static final _defaultMessageQty = 100;
+  static final _defaultEnergyTest = false;
   static const _defaultProtocol = amqp;
   static const amqp = 'AMQP';
   static const stomp = 'STOMP';
   static const mqtt = 'MQTT';
+
+  static _setBoolPref(String key, bool value) async {
+    await _prefs.then((prefs) => prefs.setBool(key, value));
+    log('set value "$value" for key "$key"');
+  }
+
+  static Future<bool> _getBoolPref(String key, bool defaultValue) async {
+    bool? value;
+    await _prefs.then((prefs) {
+      value = prefs.getBool(key);
+      if (value != null) {
+        log('returning value "$value" for key "$key"');
+      }
+    });
+    if (value == null) {
+      value = defaultValue;
+      await _prefs.then((prefs) => prefs.setBool(key, value!));
+      log('set default value "$defaultValue" for key "$key"');
+      log('returning default value "$defaultValue" for key "$key"');
+    }
+    return value!;
+  }
 
   static _setStringPref(String key, String value) async {
     await _prefs.then((prefs) => prefs.setString(key, value));
@@ -163,6 +187,16 @@ abstract class PreferenceRepository {
   static Future<int> getMessageQty() async {
     int result = 0;
     await _getIntPref(_messageQtyKey, _defaultMessageQty).then((value) => result = value );
+    return result;
+  }
+
+  static setEnergyTest(bool? value) {
+    _setBoolPref(_energyTestKey, value ?? _defaultEnergyTest);
+  }
+
+  static Future<bool> getEnergyTest() async {
+    bool result = false;
+    await _getBoolPref(_energyTestKey, _defaultEnergyTest).then((value) => result = value );
     return result;
   }
 

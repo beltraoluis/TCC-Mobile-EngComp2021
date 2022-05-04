@@ -76,6 +76,14 @@ class MenuBusinessModel {
     return (await PreferenceRepository.getMessageQty()).toString();
   }
 
+  setEnergyTest(bool? value) {
+    PreferenceRepository.setEnergyTest(value);
+  }
+
+  Future<bool> getEnergyTest() async {
+    return (await PreferenceRepository.getEnergyTest());
+  }
+
   setProtocol(FogProtocol? value) {
     var protocol;
     switch(value) {

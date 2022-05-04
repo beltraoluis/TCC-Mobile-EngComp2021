@@ -206,6 +206,28 @@ class _MenuPageState extends State<MenuPage> {
                     viewModel.messageDelta = text;
                   }),
             ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Theme(
+                data: ThemeData(unselectedWidgetColor: Colors.white),
+                child: CheckboxListTile(
+                  title: Text(
+                    viewModel.energyText,
+                    maxLines: 1,
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  value: viewModel.isEnergyTest,
+                  onChanged: (newValue) {
+                    setState(() {
+                      viewModel.isEnergyTest = newValue ?? false;
+                    });
+                  },
+                  controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
+                ),
+              ),
+            ),
             Expanded(
                 child: SizedBox(
                   height: 1,
