@@ -1,4 +1,3 @@
-import 'package:flutter_beep/flutter_beep.dart';
 import 'package:tcc_eng_comp/data/fog_protocol.dart';
 import 'package:tcc_eng_comp/repository/fog/mqtt_repository.dart';
 import 'package:tcc_eng_comp/repository/fog/stomp_repository.dart';
@@ -41,6 +40,10 @@ class TestBusinessModel {
       case PreferenceRepository.stomp: return FogProtocol.STOMP;
       default: return FogProtocol.AMQP;
     }
+  }
+
+  Future<bool> getEnergyTest() async {
+    return (await PreferenceRepository.getEnergyTest());
   }
 
 
@@ -160,7 +163,6 @@ class TestBusinessModel {
 
   Future<void> executeEnergyTest(int messageSize, int messageQty, int messageDelta) async{
     fogRepository().then((client) async {
-      FlutterBeep.beep();
       this.client = client;
       client.connect((message) {
         print(message);
@@ -172,7 +174,7 @@ class TestBusinessModel {
       for (var i = 0; i < messageQty; i++) {
         await Future.delayed(Duration(milliseconds: messageDelta), () => client.send(message));
       }
-      FlutterBeep.beep();
+      client.send('x');
     });
   }
   

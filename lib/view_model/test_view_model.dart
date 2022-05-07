@@ -14,6 +14,7 @@ class TestViewModel {
   var _messageSize = 0;
   var _messageDelta = 0;
   var _messageQty = 0;
+  var _isEnergyTest = false;
   FogRepository? client;
 
   StreamSubscription<bool>? task;
@@ -22,6 +23,7 @@ class TestViewModel {
     _messageSize = await _model.getMessageSize();
     _messageDelta = await _model.getMessageDelta();
     _messageQty = await _model.getMessageQty();
+    _isEnergyTest = await _model.getEnergyTest();
   }
 
   Stream<bool> execute() {
@@ -29,7 +31,12 @@ class TestViewModel {
       initialize();
       _model.testConnection().then((value) async {
           log('Conexão testada. Iniciando os envios');
-          _model.executeTest(_messageSize, _messageQty, _messageDelta);
+          if(_isEnergyTest){
+            await _model.executeEnergyTest(_messageSize, _messageQty, _messageDelta);
+          }
+          else {
+            await _model.executeTest(_messageSize, _messageQty, _messageDelta);
+          }
         });
     });
     return Future.delayed(Duration(seconds: 5), () => true).asStream();
